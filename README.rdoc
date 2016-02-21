@@ -1,6 +1,6 @@
 == README
 
-To start locally: run
+To start locally:
 
-rake: db migrate
-rails s
+$ rake: db migrate
+$ rails s
