@@ -1,3 +1,9 @@
+#NOTE: temp place. this is not the way to require lib!
+require "nokogiri"
+require "open-uri"
+require "Rugged"
+
+
 class RepositoriesController < ApplicationController
   before_action :set_repository, only: [:show, :edit, :update, :destroy]
 
@@ -69,6 +75,28 @@ class RepositoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def repository_params
-      params.require(:repository).permit(:url, :path, :owner, :email, :last_checked)
+      params.require(:repository).permit( :name, :owner, :url, :email, :last_checked, :local_path)
+    end
+
+    #
+    def scan
+      if @repository.local_path == nil
+        @repository.local_path = get_path()
+        Rugged::Repository.clone_at(@repository.url, @repository.local_path)
+      end
+      repo_path = @repository.local_path
+      report_path = "#{repo_path}/report.xml"
+      cmd = "dependency-check --project #{@repository.name} -f XML --out #{report_path} --scan #{repo_path}"
+      system cmd
+      
+      # call to import_report, which store xml report as parameter
+      # 
+    end
+
+    #
+    def import_report(report_path)
+      report_xml = Nokogiri::XML(open(repo_path))
+      #need to store this to db
+      #decide to store each tag as attribute / store whole xml as string and search later.
     end
 end

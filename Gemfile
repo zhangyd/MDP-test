@@ -39,3 +39,7 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 gem 'devise'
 
+# git helper lib
+gem 'rugged'
+# xml pusing lib
+gem 'nokogiri'

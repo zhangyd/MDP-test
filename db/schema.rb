@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160221221428) do
+ActiveRecord::Schema.define(version: 20160225140626) do
 
   create_table "repositories", force: true do |t|
     t.string   "url"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20160221221428) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.string   "report_xml"
   end
 
   create_table "users", force: true do |t|

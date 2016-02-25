@@ -1,13 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Url:</strong>
-  <%= @repository.url %>
+  <strong>Project:</strong>
+  <%= @repository.name %>
 </p>
 
 <p>
-  <strong>Path:</strong>
-  <%= @repository.path %>
+  <strong>Url:</strong>
+  <%= @repository.url %>
 </p>
 
 <p>
@@ -21,9 +21,12 @@
 </p>
 
 <p>
-  <strong>Last checked:</strong>
-  <%= @repository.last_checked %>
+  <strong>Last checked:</strong> 
+  <%= @repository.last_checked %> <%= link_to 'Scan'%>
 </p>
+<p>
+  <strong>Last report:</strong>
 
+</p>
 <%= link_to 'Edit', edit_repository_path(@repository) %> |
 <%= link_to 'Back', repositories_path %>
