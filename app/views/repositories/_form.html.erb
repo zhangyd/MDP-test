@@ -12,17 +12,23 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :project_name, "Project Name" %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :Owner_username, "Owner Username" %><br>
+    <%= f.text_field :owner %>
+  </div>
+  <div class="field">
     <%= f.label :url %><br>
     <%= f.text_field :url %>
   </div>
-  <div class="field">
+
+<!--   <div class="field">
     <%= f.label :path %><br>
     <%= f.text_field :path %>
   </div>
-  <div class="field">
-    <%= f.label :owner %><br>
-    <%= f.text_field :owner %>
-  </div>
+  
   <div class="field">
     <%= f.label :email %><br>
     <%= f.text_field :email %>
@@ -30,7 +36,8 @@
   <div class="field">
     <%= f.label :last_checked %><br>
     <%= f.date_select :last_checked %>
-  </div>
+  </div> -->
+  
   <div class="actions">
     <%= f.submit %>
   </div>
