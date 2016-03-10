@@ -1,3 +1,9 @@
+#Logic
+Dependencies list does not change in this page.
+
+Selecting a dependency->dependency-description and vulnerabilities page change to corresponding one.
+
+#Pages
 ##vulnerabilities.html
 
 Description: Vulnerabilities of a dependency(package)
