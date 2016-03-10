@@ -79,10 +79,6 @@ class RepositoriesController < ApplicationController
     end
 
     has_vulnerability = dependency.keep_if { |dep| !dep["vulnerabilities"].nil? }
-
-    require 'awesome_print'
-    puts dependency.size
-    ap has_vulnerability
   end
 
   # DELETE /repositories/1
