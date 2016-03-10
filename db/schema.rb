@@ -42,4 +42,18 @@ ActiveRecord::Schema.define(version: 20160221221428) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
+  create_table "vulnerabilities", force: true do |t|
+    t.string   "file_name"
+    t.integer  "num_evidence"
+    t.string   "cve_name"
+    t.decimal  "cvss_score"
+    t.string   "cav"
+    t.string   "cac"
+    t.string   "ca"
+    t.string   "cci"
+    t.string   "cai"
+    t.string   "severity"
+    t.string   "description"
+  end
+
 end
