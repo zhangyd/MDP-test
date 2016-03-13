@@ -67,20 +67,6 @@ class RepositoriesController < ApplicationController
     end
   end
 
-  def getReport
-    # get report from absolute path
-    xml = Nokogiri::XML(open('dependency-check-report.xml'))
-    dependency = xml.search('dependency').map do |dependency|
-      %w[
-        fileName filePath md5 sha1 description evidenceCollected identifiers vulnerabilities 
-      ].each_with_object({}) do |n, o|
-        o[n] = dependency.at(n)
-      end
-    end
-
-    has_vulnerability = dependency.keep_if { |dep| !dep["vulnerabilities"].nil? }
-  end
-
   # DELETE /repositories/1
   # DELETE /repositories/1.json
   def destroy
