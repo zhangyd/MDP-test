@@ -18,7 +18,7 @@ class Project
 		@repo_path = get_repo_path(@name, @user_path)
 
 		@reports = Array.new()
-		# set up foder for storing report
+		# set up folder for storing report
 		@report_path = @user_path + '/report'
 
 		puts "report path#{@report_path}"
@@ -28,7 +28,9 @@ class Project
 
 	
 	def clone_from_remote
-		@repo = Rugged::Repository.clone_at(@url_addr, @repo_path)
+		if !(File.exists? @url_addr)
+			@repo = Rugged::Repository.clone_at(@url_addr, @repo_path)
+		end
 	end
 
 	def scan
@@ -39,35 +41,35 @@ class Project
 
 		system "mkdir #{@report_path}" #HERE
 
-		cmd = "dependency-check --app #{@name} --format XML --out #{report_name} --scan #{@repo_path}"
+		cmd = "dependency-check --project #{@name} --format XML --out #{report_name} --scan #{@repo_path}"
 		system cmd
 		#check successful
 		if File.directory?(report_name)
+			puts "PUSHED TO REPORTS ARRAY"
 			@reports.push(report_name)
 		end
 	end
 
-	# def import_report
-	# 	#assume import the last generated report
+	def import_report
+		#assume import the last generated report
+		#need to add some check in future
 
-	# 	#need to add some check in future
-	# 	#empty check...
+		xml = Nokogiri::XML(open(@reports))
+		# => the xml object will now store the passed xml file
+		# can we store this xml object???
 
-	# 	xml = Nokogiri::XML(open(@reports.last))
-	# 	# => the xml obejct will now store the passed xml file
-	# 	# can we store this xml object???
-
-
-	# 	# dependency = xml.search('dependency').map do |dependency|
-	# 	# 	%w[
-	# 	# 		fileName filePath md5 sha1 description evidenceCollected identifiers vulnerabilities 
-	# 	# 	].each_with_object({}) do |n, o|
-	# 	# 	o[n] = dependency.at(n)
-	# 	# 	end
-	# 	# has_vulnerability = dependency.keep_if { |dep| !dep["vulnerabilities"].nil? }
-	# 	# puts dependency.size
-	# 	# ap has_vulnerability
-	# end
+		# dependency = xml.search('vulnerability').map do |dependency|
+		# 	%w[
+		# 		fileName filePath md5 sha1 description evidenceCollected identifiers vulnerabilities 
+		# 	].each_with_object({}) do |n, o|
+		# 	o[n] = dependency.at(n)
+		# 	puts o[n]
+		# 	end
+		# has_vulnerability = dependency.keep_if { |dep| !dep["vulnerabilities"].nil? }
+		# puts dependency.size
+		# ap has_vulnerability
+		# end
+	end
 
 	def get_user_path(username)
 		#add param checking

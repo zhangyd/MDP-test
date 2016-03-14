@@ -42,9 +42,17 @@ ActiveRecord::Schema.define(version: 20160310051544) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
-  create_table "vulnerabilities", force: true do |t|
+  create_table "dependencies", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string "filename"
+    t.string "filepath"
+    t.string "md5"
+    t.string "sha1"
+    t.string "description"
+    t.string "evidenceCollected"
+    t.string "identifiers"
+    t.string "vulnerabilities"
   end
 
 end

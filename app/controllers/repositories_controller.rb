@@ -32,7 +32,8 @@ class RepositoriesController < ApplicationController
 
     r = Project.new(name, owner, url)
     r.clone_from_remote
-    r.scan
+    # r.scan
+    r.import_report
   end
 
   # **********************************************************************************
