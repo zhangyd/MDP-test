@@ -7,8 +7,17 @@ require "digest/murmurhash"
 #
 # need a series of user input check
 #
+
+module RailsLoggerInterface
+  def logger
+    Rails.logger
+  end
+end
+
 class Project
 	#include Util
+	include RailsLoggerInterface
+
 	def initialize(_name, _user, _url_addr)
 		@name = _name
 		@user = _user
@@ -21,14 +30,12 @@ class Project
 		# set up folder for storing report
 		@report_path = @user_path + '/report'
 
-		puts "report path#{@report_path}"
-
-		# system "mkdir #{@report_path}"
+		system "mkdir #{@report_path}"
 	end
 
 	
 	def clone_from_remote
-		if !(File.exists? @url_addr)
+		if !(File.directory?(@user_path))
 			@repo = Rugged::Repository.clone_at(@url_addr, @repo_path)
 		end
 	end
