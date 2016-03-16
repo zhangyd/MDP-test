@@ -29,8 +29,11 @@ class Project
 		@reports = Array.new()
 		# set up folder for storing report
 		@report_path = @user_path + '/report'
-
 		system "mkdir #{@report_path}"
+
+		@user_hash = Digest::MurmurHash1.hexdigest(@user)
+		
+		@repo_has = Digest::MurmurHash1.hexdigest(@name)
 	end
 
 	
@@ -44,38 +47,59 @@ class Project
 		t = Time.new
 		report_name = "#{@report_path}/#{t.strftime('%Y%m%d_%H%M%S')}.xml"
 
-		puts "report_name: #{report_name}"
-
-		system "mkdir #{@report_path}" #HERE
+		# puts "report_name: #{report_name}"
 
 		cmd = "dependency-check --project #{@name} --format XML --out #{report_name} --scan #{@repo_path}"
 		system cmd
+
+		@reports.push(report_name)
+
+		# ABBY: this wasn't working so I commented it out for now
 		#check successful
-		if File.directory?(report_name)
-			puts "PUSHED TO REPORTS ARRAY"
-			@reports.push(report_name)
-		end
+		# if File.directory?(report_name)
+		# 	# puts "PUSHED TO REPORTS ARRAY"
+		# 	@reports.push(report_name)
+		# end
 	end
 
 	def import_report
 		#assume import the last generated report
 		#need to add some check in future
+		#TODO: THIS IS HARDCODED
+		xml = Nokogiri::XML(open(@report_path+'/20160315_212343.xml'))
 
-		xml = Nokogiri::XML(open(@reports))
-		# => the xml object will now store the passed xml file
-		# can we store this xml object???
-
-		# dependency = xml.search('vulnerability').map do |dependency|
-		# 	%w[
-		# 		fileName filePath md5 sha1 description evidenceCollected identifiers vulnerabilities 
-		# 	].each_with_object({}) do |n, o|
-		# 	o[n] = dependency.at(n)
-		# 	puts o[n]
-		# 	end
-		# has_vulnerability = dependency.keep_if { |dep| !dep["vulnerabilities"].nil? }
-		# puts dependency.size
-		# ap has_vulnerability
-		# end
+		dependency = xml.search('dependency').map do |dependency|
+			%w[
+				fileName filePath md5 sha1 description evidenceCollected identifiers vulnerabilities 
+			].each_with_object({}) do |n, o|
+				o[n] = dependency.at(n)
+			end
+		end
+		#only store dependencies with vulnerabilities
+		has_vulnerability = dependency.keep_if { |dep| !dep["vulnerabilities"].nil? }
+		
+		# store in database
+		has_vulnerability.each { |x|
+			puts "Filename: " + x['fileName'].inner_text + "\n"
+			puts "Filepath: " + x['filePath'].inner_text + "\n"
+			puts "MD5: " + x['md5'].inner_text + "\n"
+			puts "sha1: " + x['sha1'].inner_text + "\n"
+			puts "Description: " + x['description'].inner_text + "\n"
+			puts "Evidence: " + x['evidenceCollected'].inner_text + "\n"
+			puts "Identifiers: " + x['identifiers'].inner_text + "\n"
+			puts "Vulnerabilities: " + x['vulnerabilities'].inner_text + "\n\n"
+			# vulnerability = Vulnerability.new
+			# vulnerability.fileName = x['fileName'].inner_text
+			# vulnerability.filePath = x['filePath'].inner_text
+			# vulnerability.md5 = x['md5'].inner_text
+			# vulnerability.sha1 = x['sha1'].inner_text
+			# vulnerability.description = x['description'].inner_text
+			# vulnerability.evidenceCollected = x['evidenceCollected'].inner_text
+			# vulnerability.identifiers = x['identifiers'].inner_text
+			# vulnerability.vulnerabilities = x['vulnerabilities'].inner_text
+			# vulnerability.userHash = @user_hash + @repo_hash
+		}
+		
 	end
 
 	def get_user_path(username)
