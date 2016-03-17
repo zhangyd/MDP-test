@@ -37,9 +37,21 @@ class RepositoriesController < ApplicationController
 
   def scanselected
 
-    puts "hello"
+    puts "THIS PRINTED"
 
-    redirect_to root
+    repos = params[:repos]
+
+    repos.each do |repo|
+      name = Repository.find(repo.to_i).name
+      owner = Repository.find(repo.to_i).owner
+      url = Repository.find(repo.to_i).url
+
+      r = Project.new(name, owner, url)
+      r.clone_from_remote
+      r.scan
+    end 
+
+    redirect_to root_path
   end
 
 

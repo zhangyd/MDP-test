@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   get 'repositories/:id/scan' => 'repositories#scan', as: :scan_route
 
-  post 'repositories/scanselected' => 'repositories#scanselect', as: :scan_all_route
+  post 'repositories/scanselected' => 'repositories#scanselected', as: :scan_all_route
 
   # resources :repositories, :collection => { :scanselected => :put}
 

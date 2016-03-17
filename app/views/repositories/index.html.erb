@@ -21,7 +21,7 @@
 
       <% @repositories.each do |repository| %>
         <tr>
-          <td><%= check_box_tag(repository.id) %></td>
+          <td><%= check_box_tag("repos[]", repository.id) %></td>
           <td><%= repository.name %></td>
           <td><%= repository.owner %></td>
           <td><%= repository.url %></td>
