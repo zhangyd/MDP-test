@@ -23,12 +23,14 @@ class Project
 
 		puts "report path#{@report_path}"
 
-		# system "mkdir #{@report_path}"
+		system "mkdir #{@report_path}"
 	end
 
 	
 	def clone_from_remote
-		@repo = Rugged::Repository.clone_at(@url_addr, @repo_path)
+		if !(File.directory?(@repo_path))
+			@repo = Rugged::Repository.clone_at(@url_addr, @repo_path)
+		end
 	end
 
 	def scan
@@ -68,7 +70,11 @@ class Project
 	# 	# puts dependency.size
 	# 	# ap has_vulnerability
 	# end
-
+	def delete
+		cmd = "rm -r #{@user_path}"
+		system cmd
+	end
+	
 	def get_user_path(username)
 		#add param checking
 		user_hash = Digest::MurmurHash1.hexdigest(username)

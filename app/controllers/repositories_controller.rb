@@ -35,6 +35,14 @@ class RepositoriesController < ApplicationController
     r.scan
   end
 
+  def scanselected
+
+    puts "hello"
+
+    redirect_to root
+  end
+
+
   # **********************************************************************************
 
   # POST /repositories
@@ -70,11 +78,23 @@ class RepositoriesController < ApplicationController
   # DELETE /repositories/1
   # DELETE /repositories/1.json
   def destroy
+    path = Repository.find(params[:id]).owner.to_s;
+    user_hash = Digest::MurmurHash1.hexdigest(path)
+    user_path = "#{Dir.pwd}/private/#{user_hash}"
+
+    puts "CHECK THIS: " + user_path
+
+    cmd = "rm -r #{user_path}"
+    system cmd
+
+
     @repository.destroy
     respond_to do |format|
       format.html { redirect_to repositories_url, notice: 'Repository was successfully destroyed.' }
       format.json { head :no_content }
     end
+    
+
   end
 
 

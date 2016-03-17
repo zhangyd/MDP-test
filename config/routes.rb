@@ -17,6 +17,12 @@ Rails.application.routes.draw do
 
   get 'repositories/:id/scan' => 'repositories#scan', as: :scan_route
 
+  post 'repositories/scanselected' => 'repositories#scanselect', as: :scan_all_route
+
+  # resources :repositories, :collection => { :scanselected => :put}
+
+  # match 'repositories/scanselected', to: 'repositories#scanselect', via: :put
+
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
