@@ -30,9 +30,19 @@ class RepositoriesController < ApplicationController
     owner = Repository.find(params[:id]).owner
     url = Repository.find(params[:id]).url
 
-    r = Project.new(name, owner, url)
-    r.clone_from_remote
+
+    # if(given project doesnt exist in table ){
+      r = Project.new(name, owner, url)
+      # ... = r.user_path
+      #     = r.repo_path
+      r.clone_from_remote
+    # }
+    # else {
+    #   # Find this r from database 
+    # }
+    
     r.scan
+
   end
 
   def scanselected
