@@ -1,4 +1,5 @@
 require "util"
+require "digest/murmurhash"
 
 class RepositoriesController < ApplicationController
   before_action :set_repository, only: [:show, :edit, :update, :destroy, :scan]
@@ -26,9 +27,11 @@ class RepositoriesController < ApplicationController
   # **********************************************************************************
 
   def scan
-    name = Repository.find(params[:id]).name
-    owner = Repository.find(params[:id]).owner
+    repo_name = Repository.find(params[:id]).name
+    user_name = Repository.find(params[:id]).owner
     url = Repository.find(params[:id]).url
+    userpath = Repository.find(params[:id]).userpath
+    repopath = Repository.find(params[:id]).repopath
 
 
     # if(given project doesnt exist in table ){
@@ -70,7 +73,15 @@ class RepositoriesController < ApplicationController
   # POST /repositories
   # POST /repositories.json
   def create
-    @repository = Repository.new(repository_params)
+    username = params[:repository][:owner]
+    user_hash = Digest::MurmurHash1.hexdigest(username)
+    user_path = "#{Dir.pwd}/private/#{user_hash}"
+
+    repo_name = params[:repository][:name]
+    repo_hash = Digest::MurmurHash1.hexdigest(repo_name)
+    repo_path = "#{user_path}/#{repo_hash}"
+
+    @repository = Repository.new(repository_params.merge(:userpath => user_path, :repopath => repo_path))
 
     respond_to do |format|
       if @repository.save
@@ -128,6 +139,6 @@ class RepositoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def repository_params
-      params.require(:repository).permit(:name, :url, :path, :owner, :email, :last_checked)
+      params.require(:repository).permit(:name, :url, :owner, :email, :last_checked)
     end
 end
