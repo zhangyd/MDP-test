@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160330034214) do
+ActiveRecord::Schema.define(version: 20160330043644) do
+
+  create_table "reports", force: true do |t|
+    t.integer  "repo_id"
+    t.string   "filename"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "repositories", force: true do |t|
     t.string   "url"
