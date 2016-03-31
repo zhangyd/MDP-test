@@ -2,6 +2,8 @@
 
   <h1>Listing repositories</h1>
 
+  <button type="button" class="btn btn-default"><%= link_to 'Add a Repository', new_repository_path %></button>
+
   <div class="row">
   <table class="table">
     <thead>
@@ -10,7 +12,7 @@
         <th>Project Name</th>
         <th>Owner</th>
         <th>Url</th>
-        <th>Check</th>
+        <th>Check Repo</th>
         <!--
         <th>Email</th>
         <th>Last checked</th> -->
@@ -30,7 +32,6 @@
             <td><%= repository.url %></td>
             <!-- <td><button>Scan</button></td> -->
             <td><%= link_to "Scan", scan_route_path(repository) %></td>
-            
 
             <!--
             <td><%= repository.email %></td>
@@ -48,11 +49,9 @@
   </div>
 
   <div class="row">
-    <%= submit_tag "Scan Selected" %><br><br>
+    <button type="button" class="btn btn-default"><%= submit_tag "Scan Selected" %></button>
   </div>
   <br>
-
-  <%= link_to 'New Repository', new_repository_path %>
 </div>
 
 
