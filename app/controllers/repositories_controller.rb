@@ -46,15 +46,17 @@ class RepositoriesController < ApplicationController
     report_name = "#{report_path}/#{t.strftime('%Y%m%d_%H%M%S')}.xml"
     @report = Report.new(:repo_id => repo_id, :filename => report_name)
     @report.save
+
     # Run Dependency Check
     cmd = "dependency-check --app #{repo_name} --format XML --out #{report_name} --scan #{repopath}"
     system cmd
 
+    import_report(report_name)
+    import_report_dependencies(report_name)
+
   end
 
   def scanselected
-
-    puts "THIS PRINTED"
 
     repos = params[:repos]
 
@@ -82,9 +84,71 @@ class RepositoriesController < ApplicationController
       # Run Dependency Check
       cmd = "dependency-check --app #{repo_name} --format XML --out #{report_name} --scan #{repopath}"
       system cmd
+
+      import_report(report_name)
+      import_report_dependencies(report_name)
     end 
 
     redirect_to root_path
+  end
+
+  def import_report(report_name)
+    #assume import the last generated report
+    #need to add some check in future
+    doc = Nokogiri::XML(open(report_name))
+    vulnerability = doc.search("vulnerability").map do |vulnerability|
+      name = vulnerability.parent.parent
+      name = name.first_element_child
+      %w[
+    name cvssScore cvssAccessVector cvssAccessComplexity cvssAuthenticationr 
+    cvssConfidentialImpact cvssAvailabilityImpact severity description
+      ].each_with_object({}) do |n, o|
+        o[n] = vulnerability.at(n).text
+        o["filename"] = name.text
+      end
+    end
+    #ap vulnerability
+    #puts vulnerability.size 
+
+    vulnerability.each do |element|
+      @v = Vulnerability.new
+      @v.cve_name = element["name"]
+      @v.cvss_score = element["cvssScore"]
+      @v.cav = element["cvssAccessVector"]
+      @v.cac = element["cvssAccessComplexity"]
+      @v.ca = element["cvssAuthenticationr"]
+      @v.cci = element["cvssConfidentialImpact"]
+      @v.cai = element["cvssAvailabilityImpact"]
+      #@v.cii = element["cvssIntegrityImpact"]
+      @v.severity = element["severity"]
+      @v.description = element["description"]
+      @v.dependency_id = element["filename"]
+      @v.save
+    end   
+    
+  end
+
+  def import_report_dependencies(report_name)
+    doc = Nokogiri::XML(open(report_name))
+    dependency = doc.search("dependency").map do |dependency|
+      %w[
+        fileName filePath md5 sha1 description
+      ].each_with_object({}) do |n, o|
+        o[n] = dependency.at(n)
+      end
+    end
+
+    dependency.each do |element|
+      @d = Dependency.new
+      @d.file_name = element["fileName"].text
+      @d.file_path = element["filePath"].text
+      @d.md5 = element["md5"].text
+      @d.sha1 = element["sha1"].text
+      #@d.descriptions = element["description"].text
+      @d.save
+
+    end   
+
   end
 
 
