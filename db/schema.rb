@@ -11,17 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160331032133) do
+ActiveRecord::Schema.define(version: 20160330043644) do
 
   create_table "dependencies", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "file_name"
     t.string   "file_path"
     t.string   "md5"
     t.string   "sha1"
     t.integer  "num_evidence"
-    t.string   "descriptions"
+    t.text     "descriptions"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "reports", force: true do |t|
@@ -69,7 +69,6 @@ ActiveRecord::Schema.define(version: 20160331032133) do
     t.string   "ca"
     t.string   "cci"
     t.string   "cai"
-    t.string   "cii"
     t.string   "severity"
     t.string   "dependency_id"
     t.text     "description"
