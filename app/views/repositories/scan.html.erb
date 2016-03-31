@@ -1,1 +1,41 @@
-<%= @hi %>
+<body class="main-page-body">
+    <div class="vulnerability-page">
+        <div class="container">
+            <div class="risk-chart">
+                <h2>Security Risks</h2>
+                <table class="table vulnerability-table" style="background-color: white;overflow:auto;">
+                    <thead>
+                        <tr>
+                            <th>Vulnerability CVE</th>
+                            <th>Associated Dependency</th>
+                            <th>CVSS Score</th>
+                            <th>Severity Rating</th>
+                            <th>CVSS Access Vector</th>
+                            <th>CVSS Access Complexity</th>
+                            <th>CVSS Confidential Impact</th>
+                            <th>CVSS Availability Impact</th>
+                            <th>Last Update</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% @dependencies.zip(@vulnerabilities).each do |d,v| %>
+                        <tr>
+                            <td><%= v.cve_name %></td>
+                            <td><%= d.file_name %></td>
+                            <td>
+                            <div class="progress"><div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"style="width:<%= v.cvss_score * 10 %>%"><%= v.cvss_score %></div></div>
+                            </td>
+                            <td><%= v.severity %></td>
+                            <td><%= v.cav %></td>
+                            <td><%= v.cac %></td>
+                            <td><%= v.cci %></td>
+                            <td><%= v.cai %></td>
+                            <td><%= d.updated_at %></td>
+                        </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>

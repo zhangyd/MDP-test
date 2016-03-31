@@ -11,17 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160310051544) do
+ActiveRecord::Schema.define(version: 20160330043644) do
+
+  create_table "dependencies", force: true do |t|
+    t.string   "file_name"
+    t.string   "file_path"
+    t.string   "md5"
+    t.string   "sha1"
+    t.integer  "num_evidence"
+    t.text     "descriptions"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "reports", force: true do |t|
+    t.integer  "repo_id"
+    t.string   "filename"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+>>>>>>> abby
 
   create_table "repositories", force: true do |t|
     t.string   "url"
-    t.string   "path"
     t.string   "owner"
     t.string   "email"
     t.date     "last_checked"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.string   "userpath"
+    t.string   "repopath"
   end
 
   create_table "users", force: true do |t|
@@ -42,17 +62,19 @@ ActiveRecord::Schema.define(version: 20160310051544) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
-  create_table "dependencies", force: true do |t|
+  create_table "vulnerabilities", force: true do |t|
+    t.string   "cve_name"
+    t.decimal  "cvss_score"
+    t.string   "cav"
+    t.string   "cac"
+    t.string   "ca"
+    t.string   "cci"
+    t.string   "cai"
+    t.string   "severity"
+    t.string   "dependency_id"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string "filename"
-    t.string "filepath"
-    t.string "md5"
-    t.string "sha1"
-    t.string "description"
-    t.string "evidenceCollected"
-    t.string "identifiers"
-    t.string "vulnerabilities"
   end
 
 end

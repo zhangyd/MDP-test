@@ -15,6 +15,4 @@
 /log/*.log
 /tmp
 
-# Ignore dep check reports
 /private
-
