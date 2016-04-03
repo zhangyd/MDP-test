@@ -1,6 +1,5 @@
 class CreateDependencies < ActiveRecord::Migration
   def change
-    drop_table :dependencies
     create_table :dependencies do |t|
     	t.string :file_name
     	t.string :file_path

@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(version: 20160330043644) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
->>>>>>> abby
 
   create_table "repositories", force: true do |t|
     t.string   "url"
