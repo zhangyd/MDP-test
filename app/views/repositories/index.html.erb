@@ -12,7 +12,7 @@
         <th>Project Name</th>
         <th>Owner</th>
         <th>Url</th>
-        <th>Check Repo</th>
+        <!-- <th>Check Repo</th> -->
         <!--
         <th>Email</th>
         <th>Last checked</th> -->
@@ -23,7 +23,6 @@
     <tbody>
 
       <%= form_tag scan_all_route_path, :method => :post do %>
-
         <% @repositories.each do |repository| %>
           <tr>
             <td><%= check_box_tag("repos[]", repository.id) %></td>
@@ -31,7 +30,6 @@
             <td><%= repository.owner %></td>
             <td><%= repository.url %></td>
             <!-- <td><button>Scan</button></td> -->
-            <td><%= link_to "Scan", scan_route_path(repository) %></td>
 
             <!--
             <td><%= repository.email %></td>
@@ -42,15 +40,16 @@
 
           </tr>
         <% end %>
-      <% end %>
+        <!-- This needs to be within the form, figure out how to make it pretty  -->
+        <div><%= submit_tag "Scan Selected" %></div>
 
+      <% end %>
+  
     </tbody>
+
   </table>
   </div>
 
-  <div class="row">
-    <button type="button" class="btn btn-default"><%= submit_tag "Scan Selected" %></button>
-  </div>
   <br>
 </div>
 

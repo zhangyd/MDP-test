@@ -29,40 +29,36 @@ class RepositoriesController < ApplicationController
 
   # **********************************************************************************
 
-  def scan
-    repo_id = Repository.find(params[:id]).id
-    repo_name = Repository.find(params[:id]).name
-    # user_name = Repository.find(params[:id]).owner
-    url = Repository.find(params[:id]).url
-    userpath = Repository.find(params[:id]).userpath
-    repopath = Repository.find(params[:id]).repopath
-    # Pull repository if not pulled yet
-    if !(File.directory?(repopath)) then
-      @repo = Rugged::Repository.clone_at(url, repopath)
-    end
-    # Insert into Report table 
-    t = Time.new
-    report_path = userpath + '/report'
-    report_name = "#{report_path}/#{t.strftime('%Y%m%d_%H%M%S')}.xml"
-    @report = Report.new(:repo_id => repo_id, :filename => report_name)
-    @report.save
+  # def scan
+  #   repo_id = Repository.find(params[:id]).id
+  #   repo_name = Repository.find(params[:id]).name
+  #   # user_name = Repository.find(params[:id]).owner
+  #   url = Repository.find(params[:id]).url
+  #   userpath = Repository.find(params[:id]).userpath
+  #   repopath = Repository.find(params[:id]).repopath
+  #   # Pull repository if not pulled yet
+  #   if !(File.directory?(repopath)) then
+  #     @repo = Rugged::Repository.clone_at(url, repopath)
+  #   end
+  #   # Insert into Report table 
+  #   t = Time.new
+  #   report_path = userpath + '/report'
+  #   report_name = "#{report_path}/#{t.strftime('%Y%m%d_%H%M%S')}.xml"
+  #   @report = Report.new(:repo_id => repo_id, :filename => report_name)
+  #   @report.save
 
-    # Run Dependency Check
-    cmd = "dependency-check --app #{repo_name} --format XML --out #{report_name} --scan #{repopath}"
-    system cmd
+  #   # Run Dependency Check
+  #   cmd = "dependency-check --app #{repo_name} --format XML --out #{report_name} --scan #{repopath}"
+  #   system cmd
 
-    import_report(report_name)
-    import_report_dependencies(report_name)
+  #   import_report(report_name)
+  #   import_report_dependencies(report_name)
 
-    @dependencies = Dependency.where(:id => 1..4)
-    @vulnerabilities = Vulnerability.where(:id => 1..4)
-    @dependencies.zip @vulnerabilities
+  #   @dependencies = Dependency.where(:id => 1..4)
+  #   @vulnerabilities = Vulnerability.where(:id => 1..4)
+  #   @dependencies.zip @vulnerabilities
 
-    r = Project.new(name, owner, url)
-    r.clone_from_remote
-    r.scan
-    r.import_report
-  end
+  # end
 
   def scanselected
 
@@ -97,7 +93,7 @@ class RepositoriesController < ApplicationController
       import_report_dependencies(report_name)
     end 
 
-    redirect_to root_path
+    # redirect_to root_path
   end
 
   def import_report(report_name)

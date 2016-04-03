@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
-  get 'repositories/:id/scan' => 'repositories#scan', as: :scan_route
+  # get 'repositories/:id/scan' => 'repositories#scan', as: :scan_route
 
   post 'repositories/scanselected' => 'repositories#scanselected', as: :scan_all_route
 
