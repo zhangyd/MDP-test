@@ -124,8 +124,8 @@ class RepositoriesController < ApplicationController
       #@v.cii = element["cvssIntegrityImpact"]
       @v.severity = element["severity"]
       @v.description = element["description"]
+      # !!! Need to store the correct Dependency_ID of integer type HERE 
       # @v.dependency_id = element["filename"]
-      @v.dependency_id = Report.where(filename: report_name).last.id
 
       @v.save
     end   
@@ -149,6 +149,7 @@ class RepositoriesController < ApplicationController
       @d.md5 = element["md5"].text
       @d.sha1 = element["sha1"].text
       #@d.descriptions = element["description"].text
+      @d.repository_id = Report.where(filename: report_name).last.id
       @d.save
 
     end   
