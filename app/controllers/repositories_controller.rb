@@ -83,7 +83,7 @@ class RepositoriesController < ApplicationController
       t = Time.new
       report_path = userpath + '/report'
       report_name = "#{report_path}/#{t.strftime('%Y%m%d_%H%M%S')}.xml"
-      @report = Report.new(:repo_id => repo_id, :filename => report_name)
+      @report = Report.new(:repository_id => repo_id, :filename => report_name)
       @report.save
       # Run Dependency Check
       cmd = "dependency-check --app #{repo_name} --format XML --out #{report_name} --scan #{repopath}"
@@ -124,7 +124,9 @@ class RepositoriesController < ApplicationController
       #@v.cii = element["cvssIntegrityImpact"]
       @v.severity = element["severity"]
       @v.description = element["description"]
-      @v.dependency_id = element["filename"]
+      # @v.dependency_id = element["filename"]
+      @v.dependency_id = Report.where(filename: report_name).last.id
+
       @v.save
     end   
     

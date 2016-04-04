@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160330043644) do
+ActiveRecord::Schema.define(version: 20160404052750) do
 
   create_table "dependencies", force: true do |t|
     t.string   "file_name"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20160330043644) do
   end
 
   create_table "reports", force: true do |t|
-    t.integer  "repo_id"
+    t.integer  "repository_id"
     t.string   "filename"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 20160330043644) do
     t.string   "cci"
     t.string   "cai"
     t.string   "severity"
-    t.string   "dependency_id"
+    t.integer  "dependency_id", limit: 255
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
