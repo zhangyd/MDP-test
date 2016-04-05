@@ -89,6 +89,8 @@ class RepositoriesController < ApplicationController
       cmd = "dependency-check --app #{repo_name} --format XML --out #{report_name} --scan #{repopath}"
       system cmd
 
+      DeveloperMailer.security_warning(Repository.find(repo.to_i).email).deliver
+
       import_report(report_name)
       import_report_dependencies(report_name)
     end 
