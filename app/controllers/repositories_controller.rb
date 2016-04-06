@@ -27,6 +27,9 @@ class RepositoriesController < ApplicationController
   def edit
   end
 
+  def showscan
+  end
+
   # **********************************************************************************
 
   # def scan
@@ -95,7 +98,7 @@ class RepositoriesController < ApplicationController
       import_report_dependencies(report_name)
     end 
 
-    # redirect_to root_path
+    redirect_to root_path
   end
 
   def import_report(report_name)

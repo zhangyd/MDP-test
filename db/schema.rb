@@ -14,14 +14,14 @@
 ActiveRecord::Schema.define(version: 20160404191634) do
 
   create_table "dependencies", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "file_name"
     t.string   "file_path"
     t.string   "md5"
     t.string   "sha1"
     t.integer  "num_evidence"
-    t.text     "descriptions"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "descriptions"
     t.integer  "repository_id"
   end
 
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 20160404191634) do
     t.string   "ca"
     t.string   "cci"
     t.string   "cai"
+    t.string   "cii"
     t.string   "severity"
     t.integer  "dependency_id", limit: 255
     t.text     "description"
