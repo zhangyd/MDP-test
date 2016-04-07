@@ -103,11 +103,36 @@ class RepositoriesController < ApplicationController
 
       # DeveloperMailer.security_warning(Repository.find(repo.to_i).email).deliver
 
-      import_report(report_name)
       import_report_dependencies(report_name)
+      import_report(report_name)
     end 
-
     redirect_to root_path
+  end
+
+  def import_report_dependencies(report_name)
+    doc = Nokogiri::XML(open(report_name))
+    dependency = doc.search("dependency").map do |dependency|
+      %w[
+        fileName filePath md5 sha1 description vulnerabilities
+      ].each_with_object({}) do |n, o|
+        o[n] = dependency.at(n)
+      end
+    end
+
+    # This takes out dependencies if they have no vulnerabilities
+    # has_vulnerability = dependency.keep_if { |dep| !dep["vulnerabilities"].nil? }
+
+    has_vulnerability.each do |element|
+      @d = Dependency.new
+      @d.file_name = element["fileName"].text
+      @d.file_path = element["filePath"].text
+      @d.md5 = element["md5"].text
+      @d.sha1 = element["sha1"].text
+      #@d.descriptions = element["description"].text
+      @d.repository_id = Report.where(filename: report_name).last.id
+      @d.save
+
+    end
   end
 
   def import_report(report_name)
@@ -137,37 +162,10 @@ class RepositoriesController < ApplicationController
       @v.severity = element["severity"]
       @v.description = element["description"]
       # !!! Need to store the correct Dependency_ID of integer type HERE 
-      @v.dependency_id = element["filename"]
-      @v.repository_id = Report.where(filename: report_name).last.id
+      @v.dependency_id = Dependency.where(fileName: element["filename"]).last.id
       @v.save
     end   
     
-  end
-
-  def import_report_dependencies(report_name)
-    doc = Nokogiri::XML(open(report_name))
-    dependency = doc.search("dependency").map do |dependency|
-      %w[
-        fileName filePath md5 sha1 description vulnerabilities
-      ].each_with_object({}) do |n, o|
-        o[n] = dependency.at(n)
-      end
-    end
-
-    has_vulnerability = dependency.keep_if { |dep| !dep["vulnerabilities"].nil? }
-
-    has_vulnerability.each do |element|
-      @d = Dependency.new
-      @d.file_name = element["fileName"].text
-      @d.file_path = element["filePath"].text
-      @d.md5 = element["md5"].text
-      @d.sha1 = element["sha1"].text
-      #@d.descriptions = element["description"].text
-      @d.repository_id = Report.where(filename: report_name).last.id
-      @d.save
-
-    end   
-
   end
 
 
