@@ -27,14 +27,18 @@ class RepositoriesController < ApplicationController
   def edit
   end
 
+  # get correct dependencies to display in database
   def dependencies
+    # Deps and Vulns are identified by the repository_id
+    # Vulns are also identified by the dependency_id
     @report_id = Report.where(:repository_id => params[:id])[0].id
     @dependencies = Dependency.where(:repository_id => @report_id)
     @vulnerability_group = []
     @dependencies.each do |d|
-      @vulnerability_group << Vulnerability.where("repository_id = ? AND dependency_id = ?", @report_id, d.dependency_id)
+      vulns = Vulnerability.where("repository_id = ? AND dependency_id = ?", @report_id, d.dependency_id)
+      puts vulns
+      @vulnerability_group << vulns
     end
-    # @dependencies.zip @vulnerability_group
   end
 
   # **********************************************************************************

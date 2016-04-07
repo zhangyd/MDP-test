@@ -5,25 +5,30 @@
                 <h2>Dependencies</h2>
 
                 <% if !@dependencies.empty? %>
-                    <% @dependencies.zip(@vulnerability_group).each do |d, vulnerability| %>
-                        <div><%= d.file_name %></div>
+                    <% @dependencies.each do |d| %>
+                        <% @vulnerability_group.each do |vulnerability| %>
+                            <div><%= d.file_name %></div>
 
-                         <table class="table vulnerability-table" style="background-color: white;overflow:auto;">
-                                <thead>
-                                    <tr>Vulnerabilities...</tr>
-                                </thead>
-                                <tbody>
-                                    <% vulnerability.each do |val| %>
-                                    <tr>
-                                        <td><% vulnerability %></td>
-                                    </tr>
-                                    <% end %>    
-                                </tbody>
-                            </table>
-                           
-                        <% end %>
+                            <% if !@vulnerability.nil? %>
+                            <% vulnerability.each do |v| %>
+
+                            <table class="table vulnerability-table" style="background-color: white;overflow:auto;">
+                                    <thead>
+                                        <tr>Vulnerabilities...</tr>
+
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><% v %></td>
+                                        </tr>  
+                                    </tbody>
+                                </table>
+                                <% end %>
+                            <% end %>
+                            <% end %>  
+                    <% end %>
                 <% else %>
-                <div>No vulnerable dependencies detected</div>
+                    <div>No vulnerable dependencies detected</div>
                 <% end %>
             </div>
         </div>
