@@ -104,23 +104,39 @@ class RepositoriesController < ApplicationController
       # DeveloperMailer.security_warning(Repository.find(repo.to_i).email).deliver
 
       import_report(report_name)
-      import_report_dependencies(report_name)
     end 
 
     redirect_to root_path
   end
 
   def import_report(report_name)
-    doc = Nokogiri::XML(open(report_name))
+    #modifies xml report
+    count = 0
+    doc = Nokogiri::XML(open(report_name)) 
+    doc.css('dependency').each do |node|
+      dependencyid = Nokogiri::XML::Node.new "dependencyid", doc
+      dependencyid.content = count
+      node.first_element_child.before(dependencyid)
+      count += 1
+    end
+    
+    import_report_dependencies(doc.to_xml)
+    import_report_vulnerabilities(doc.to_xml)
+
+  end
+
+
+  def import_report_vulnerabilities(report)
+    doc = Nokogiri::XML(doc.to_xml)
     vulnerability = doc.search("vulnerability").map do |vulnerability|
-      name = vulnerability.parent.parent
-      name = name.first_element_child
+      id = vulnerability.parent.parent
+      id = id.first_element_child
       %w[
     name cvssScore cvssAccessVector cvssAccessComplexity cvssAuthenticationr 
     cvssConfidentialImpact cvssAvailabilityImpact severity description
       ].each_with_object({}) do |n, o|
         o[n] = vulnerability.at(n).text
-        o["filename"] = name.text
+        o["dependency_id"] = id.text
       end
     end
 
@@ -137,32 +153,31 @@ class RepositoriesController < ApplicationController
       @v.severity = element["severity"]
       @v.description = element["description"]
       # !!! Need to store the correct Dependency_ID of integer type HERE 
-      @v.dependency_id = element["filename"]
       @v.repository_id = Report.where(filename: report_name).last.id
+      @v.dependency_id = element["dependency_id"]
       @v.save
     end   
     
   end
 
-  def import_report_dependencies(report_name)
-    doc = Nokogiri::XML(open(report_name))
+  def import_report_dependencies(report)
+    doc = Nokogiri::XML(doc.to_xml)
     dependency = doc.search("dependency").map do |dependency|
       %w[
-        fileName filePath md5 sha1 description vulnerabilities
+        dependencyid fileName filePath md5 sha1 description
       ].each_with_object({}) do |n, o|
         o[n] = dependency.at(n)
       end
     end
 
-    has_vulnerability = dependency.keep_if { |dep| !dep["vulnerabilities"].nil? }
-
-    has_vulnerability.each do |element|
+    dependency.each do |element|
       @d = Dependency.new
       @d.file_name = element["fileName"].text
       @d.file_path = element["filePath"].text
       @d.md5 = element["md5"].text
       @d.sha1 = element["sha1"].text
       #@d.descriptions = element["description"].text
+      #@d.dependency_id = element["dependencyid"].text
       @d.repository_id = Report.where(filename: report_name).last.id
       @d.save
 
