@@ -32,13 +32,15 @@ class RepositoriesController < ApplicationController
     # Deps and Vulns are identified by the repository_id
     # Vulns are also identified by the dependency_id
     @report_id = Report.where(:repository_id => params[:id])[0].id
-    @dependencies = Dependency.where(:repository_id => @report_id)
-    @vulnerability_group = []
-    @dependencies.each do |d|
-      vulns = Vulnerability.where("repository_id = ? AND dependency_id = ?", @report_id, d.dependency_id)
-      puts vulns
-      @vulnerability_group << vulns
+    @dependency_matches = []
+    @dependency_matches = Dependency.where(:repository_id => @report_id)
+
+    @vulnerability_matches = []
+    # @vulnerability_matches = Vulnerability.where("repository_id =? AND dependency_id =?", @report_id, d.dependency_id)
+    @dependency_matches.each_with_index do |d, i|
+      @vulnerability_matches << Vulnerability.where("(repository_id =?) AND (dependency_id =?)", @report_id, @dependency_matches[i].dependency_id)
     end
+    return @vulnerability_matches
   end
 
   # **********************************************************************************

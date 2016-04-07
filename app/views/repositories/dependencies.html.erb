@@ -4,29 +4,33 @@
             <div class="risk-chart">
                 <h2>Dependencies</h2>
 
-                <% if !@dependencies.empty? %>
-                    <% @dependencies.each do |d| %>
-                        <% @vulnerability_group.each do |vulnerability| %>
-                            <div><%= d.file_name %></div>
+                <% if !@dependency_matches.empty? %>
 
-                            <% if !@vulnerability.nil? %>
-                            <% vulnerability.each do |v| %>
+                    <% @dependency_matches.each_with_index do |dependency, i| %>
+                        <% if !@vulnerability_matches[i].empty? %>
+                        <div><%= dependency.file_name %></div>
 
+                            <!-- Display vulns -->
                             <table class="table vulnerability-table" style="background-color: white;overflow:auto;">
-                                    <thead>
-                                        <tr>Vulnerabilities...</tr>
-
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><% v %></td>
-                                        </tr>  
-                                    </tbody>
-                                </table>
+                                <thead>
+                                    <tr>
+                                    <td>Vulnerabilities...</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <% @vulnerability_matches[i].each do |v| %>
+                                    <tr>
+                                        <td><% v.cve_name %></td>
+                                    </tr>
+                                </tbody>
                                 <% end %>
-                            <% end %>
-                            <% end %>  
-                    <% end %>
+                            </table>
+                            <!-- end display vulns -->
+
+                        <% end %>
+                    <% end %> 
+
+                <!-- No dependencies stored for this repo -->
                 <% else %>
                     <div>No vulnerable dependencies detected</div>
                 <% end %>
