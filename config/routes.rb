@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'repositories#index'
 
+  get '/dependencies/:id', to: 'repositories#dependencies', as: :dependencies
+
   # resources :repositories do
   #   get 'scan', on: :member
   # end

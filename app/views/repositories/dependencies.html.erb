@@ -1,113 +1,30 @@
 <body class="main-page-body">
-    <div class="head">
-    </div>
     <div class="vulnerability-page">
         <div class="container">
             <div class="risk-chart">
-                <h2>Security Risks</h2>
-                <table class="table vulnerability-table" style="background-color: white;overflow:auto;">
-                    <tbody>
-                        <tr>
-                            <td>High</td>
-                            <td>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"
-                                    style="width:10%">
-                                        1
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Medium</td>
-                            <td>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"
-                                    style="width:30%">
-                                        3
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Non</td>
-                            <td>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"
-                                    style="width:70%">
-                                        10
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-            </div>
+                <h2>Dependencies</h2>
 
-            <div class="vulnerability-block" style="background-color: grey">
-                <table class="table vulnerability-table" style="background-color: white;overflow:auto;">
-                    <thead>
-                        <tr>
-                            <th>Component</th>
-                            <th>Version</th>
-                            <th>Vulnerabilities</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Hybernate Validator</td>
-                            <td>4.1.0</td>
-                            <td>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"
-                                    style="width:50%">
-                                        5
-                                    </div>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"
-                                    style="width:10%">
-                                        1
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Apache Commons</td>
-                            <td>1.2.2</td>
-                            <td>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"
-                                    style="width:50%">
-                                        5
-                                    </div>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"
-                                    style="width:10%">
-                                        1
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Apache Struts</td>
-                            <td>2.3.7</td>
-                            <td>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"
-                                    style="width:50%">
-                                        5
-                                    </div>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"
-                                    style="width:10%">
-                                        1
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <% if !@dependencies.empty? %>
+                    <% @dependencies.zip(@vulnerability_group).each do |d, vulnerability| %>
+                        <div><%= d.file_name %></div>
+
+                         <table class="table vulnerability-table" style="background-color: white;overflow:auto;">
+                                <thead>
+                                    <tr>Vulnerabilities...</tr>
+                                </thead>
+                                <tbody>
+                                    <% vulnerability.each do |val| %>
+                                    <tr>
+                                        <td><% vulnerability %></td>
+                                    </tr>
+                                    <% end %>    
+                                </tbody>
+                            </table>
+                           
+                        <% end %>
+                <% else %>
+                <div>No vulnerable dependencies detected</div>
+                <% end %>
             </div>
         </div>
     </div>

@@ -27,7 +27,14 @@ class RepositoriesController < ApplicationController
   def edit
   end
 
-  def showscan
+  def dependencies
+    @report_id = Report.where(:repository_id => params[:id])[0].id
+    @dependencies = Dependency.where(:repository_id => @report_id)
+    @vulnerability_group = []
+    @dependencies.each do |d|
+      @vulnerability_group << Vulnerability.where("repository_id = ? AND dependency_id = ?", @report_id, d.file_name)
+    end
+    # @dependencies.zip @vulnerability_group
   end
 
   # **********************************************************************************
@@ -57,17 +64,18 @@ class RepositoriesController < ApplicationController
   #   import_report(report_name)
   #   import_report_dependencies(report_name)
 
-  #   @dependencies = Dependency.where(:id => 1..4)
-  #   @vulnerabilities = Vulnerability.where(:id => 1..4)
-  #   @dependencies.zip @vulnerabilities
+    # @dependencies = Dependency.where(:id => 1..4)
+    # @vulnerabilities = Vulnerability.where(:id => 1..4)
+    # @dependencies.zip @vulnerabilities
 
   # end
 
+#TODO: Fail if nothing is selected
   def scanselected
-
     repos = params[:repos]
 
     repos.each do |repo|
+
       name = Repository.find(repo.to_i).name
       owner = Repository.find(repo.to_i).owner
       url = Repository.find(repo.to_i).url
@@ -89,10 +97,11 @@ class RepositoriesController < ApplicationController
       @report = Report.new(:repository_id => repo_id, :filename => report_name)
       @report.save
       # Run Dependency Check
-      cmd = "dependency-check --app #{repo_name} --format XML --out #{report_name} --scan #{repopath}"
+      system "mkdir #{report_path}" #HERE
+      cmd = "dependency-check --project #{repo_name} --format XML -o #{report_name} --scan #{repopath}"
       system cmd
 
-      DeveloperMailer.security_warning(Repository.find(repo.to_i).email).deliver
+      # DeveloperMailer.security_warning(Repository.find(repo.to_i).email).deliver
 
       import_report(report_name)
       import_report_dependencies(report_name)
@@ -102,8 +111,6 @@ class RepositoriesController < ApplicationController
   end
 
   def import_report(report_name)
-    #assume import the last generated report
-    #need to add some check in future
     doc = Nokogiri::XML(open(report_name))
     vulnerability = doc.search("vulnerability").map do |vulnerability|
       name = vulnerability.parent.parent
@@ -130,8 +137,8 @@ class RepositoriesController < ApplicationController
       @v.severity = element["severity"]
       @v.description = element["description"]
       # !!! Need to store the correct Dependency_ID of integer type HERE 
-      # @v.dependency_id = element["filename"]
-
+      @v.dependency_id = element["filename"]
+      @v.repository_id = Report.where(filename: report_name).last.id
       @v.save
     end   
     
@@ -141,13 +148,15 @@ class RepositoriesController < ApplicationController
     doc = Nokogiri::XML(open(report_name))
     dependency = doc.search("dependency").map do |dependency|
       %w[
-        fileName filePath md5 sha1 description
+        fileName filePath md5 sha1 description vulnerabilities
       ].each_with_object({}) do |n, o|
         o[n] = dependency.at(n)
       end
     end
 
-    dependency.each do |element|
+    has_vulnerability = dependency.keep_if { |dep| !dep["vulnerabilities"].nil? }
+
+    has_vulnerability.each do |element|
       @d = Dependency.new
       @d.file_name = element["fileName"].text
       @d.file_path = element["filePath"].text
@@ -219,13 +228,11 @@ class RepositoriesController < ApplicationController
     cmd = "rm -r #{user_path}"
     system cmd
 
-
     @repository.destroy
     respond_to do |format|
       format.html { redirect_to repositories_url, notice: 'Repository was successfully destroyed.' }
       format.json { head :no_content }
     end
-    
 
   end
 

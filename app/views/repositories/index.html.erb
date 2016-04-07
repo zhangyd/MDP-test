@@ -1,6 +1,6 @@
 <div class="container">
 
-  <h1>Listing repositories</h1>
+  <h1>Listing Repositories</h1>
   <br>
 
   <div class="row">
@@ -36,7 +36,7 @@
             <!--
             <td><%= repository.email %></td>
             <td><%= repository.last_checked %></td> -->
-            <!-- <td><%= link_to 'Show Dependencies', repository %></td> -->
+            <td><%= link_to 'Show Dependencies', dependencies_path(repository) %></td>
             <td><%= link_to 'Details', repository %></td>
             <td><%= link_to 'Edit', edit_repository_path(repository) %></td>
             <td><%= link_to 'Destroy', repository, method: :delete, data: { confirm: 'Are you sure?' } %></td>

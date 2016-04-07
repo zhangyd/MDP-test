@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160404191634) do
+ActiveRecord::Schema.define(version: 20160406204459) do
 
   create_table "dependencies", force: true do |t|
     t.datetime "created_at"
@@ -72,10 +72,11 @@ ActiveRecord::Schema.define(version: 20160404191634) do
     t.string   "cai"
     t.string   "cii"
     t.string   "severity"
-    t.integer  "dependency_id", limit: 255
+    t.string   "dependency_id"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "repository_id"
   end
 
 end
