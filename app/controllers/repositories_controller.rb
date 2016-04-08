@@ -32,45 +32,14 @@ class RepositoriesController < ApplicationController
     @dependencies = Dependency.where(:repository_id => @report_id)
     @vulnerability_group = []
     @dependencies.each do |d|
-      @vulnerability_group << Vulnerability.where("repository_id = ? AND dependency_id = ?", @report_id, d.file_name)
+      @vulnerability_group << Vulnerability.where("repository_id = ? AND dependency_id = ?", @report_id, d.dependency_id)
     end
     # @dependencies.zip @vulnerability_group
   end
 
   # **********************************************************************************
 
-  # def scan
-  #   repo_id = Repository.find(params[:id]).id
-  #   repo_name = Repository.find(params[:id]).name
-  #   # user_name = Repository.find(params[:id]).owner
-  #   url = Repository.find(params[:id]).url
-  #   userpath = Repository.find(params[:id]).userpath
-  #   repopath = Repository.find(params[:id]).repopath
-  #   # Pull repository if not pulled yet
-  #   if !(File.directory?(repopath)) then
-  #     @repo = Rugged::Repository.clone_at(url, repopath)
-  #   end
-  #   # Insert into Report table 
-  #   t = Time.new
-  #   report_path = userpath + '/report'
-  #   report_name = "#{report_path}/#{t.strftime('%Y%m%d_%H%M%S')}.xml"
-  #   @report = Report.new(:repo_id => repo_id, :filename => report_name)
-  #   @report.save
-
-  #   # Run Dependency Check
-  #   cmd = "dependency-check --app #{repo_name} --format XML --out #{report_name} --scan #{repopath}"
-  #   system cmd
-
-  #   import_report(report_name)
-  #   import_report_dependencies(report_name)
-
-    # @dependencies = Dependency.where(:id => 1..4)
-    # @vulnerabilities = Vulnerability.where(:id => 1..4)
-    # @dependencies.zip @vulnerabilities
-
-  # end
-
-#TODO: Fail if nothing is selected
+  #TODO: Fail if no repos are selected
   def scanselected
     repos = params[:repos]
 
@@ -82,14 +51,17 @@ class RepositoriesController < ApplicationController
 
       repo_id = Repository.find(repo.to_i).id
       repo_name = Repository.find(repo.to_i).name
+
       # user_name = Repository.find(params[:id]).owner
       url = Repository.find(repo.to_i).url
       userpath = Repository.find(repo.to_i).userpath
       repopath = Repository.find(repo.to_i).repopath
+
       # Pull repository if not pulled yet
       if !(File.directory?(repopath)) then
         @repo = Rugged::Repository.clone_at(url, repopath)
       end
+
       # Insert into Report table 
       t = Time.new
       report_path = userpath + '/report'
@@ -101,8 +73,10 @@ class RepositoriesController < ApplicationController
       cmd = "dependency-check --project #{repo_name} --format XML -o #{report_name} --scan #{repopath}"
       system cmd
 
+      # send email
       # DeveloperMailer.security_warning(Repository.find(repo.to_i).email).deliver
-
+      
+      # Store generated report information in db
       import_report(report_name)
     end 
 
@@ -120,6 +94,7 @@ class RepositoriesController < ApplicationController
       count += 1
     end
     
+<<<<<<< HEAD
     import_report_dependencies(doc.to_xml)
     import_report_vulnerabilities(doc.to_xml)
 
@@ -128,6 +103,42 @@ class RepositoriesController < ApplicationController
 
   def import_report_vulnerabilities(report)
     doc = Nokogiri::XML(doc.to_xml)
+=======
+    import_report_dependencies(report_name, doc.to_xml)
+    import_report_vulnerabilities(report_name, doc.to_xml)
+
+  end
+
+  # Store dependencies in db
+  def import_report_dependencies(report_name, report)
+    doc = Nokogiri::XML(report)
+    dependency = doc.search("dependency").map do |dependency|
+      %w[
+        dependencyid fileName filePath md5 sha1 description
+      ].each_with_object({}) do |n, o|
+        o[n] = dependency.at(n)
+      end
+    end
+
+    dependency.each do |element|
+      @d = Dependency.new
+      @d.file_name = element["fileName"].text
+      @d.file_path = element["filePath"].text
+      @d.md5 = element["md5"].text
+      @d.sha1 = element["sha1"].text
+      #@d.descriptions = element["description"].text TODO: should we keep this?
+      @d.dependency_id = element["dependencyid"].text
+      @d.repository_id = Report.where(filename: report_name).last.id
+      @d.save
+
+    end   
+
+  end
+
+  # Store vulnerabilities in db
+  def import_report_vulnerabilities(report_name, report)
+    doc = Nokogiri::XML(report)
+>>>>>>> 6568ef1def76218bb791a382b0111aa4b76b2ece
     vulnerability = doc.search("vulnerability").map do |vulnerability|
       id = vulnerability.parent.parent
       id = id.first_element_child
@@ -160,6 +171,7 @@ class RepositoriesController < ApplicationController
     
   end
 
+<<<<<<< HEAD
   def import_report_dependencies(report)
     doc = Nokogiri::XML(doc.to_xml)
     dependency = doc.search("dependency").map do |dependency|
@@ -185,6 +197,8 @@ class RepositoriesController < ApplicationController
 
   end
 
+=======
+>>>>>>> 6568ef1def76218bb791a382b0111aa4b76b2ece
 
   # **********************************************************************************
 
