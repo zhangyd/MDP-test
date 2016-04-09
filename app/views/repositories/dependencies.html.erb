@@ -4,26 +4,35 @@
             <div class="risk-chart">
                 <h2>Dependencies</h2>
 
-                <% if !@dependencies.empty? %>
-                    <% @dependencies.zip(@vulnerability_group).each do |d, vulnerability| %>
-                        <div><%= d.file_name %></div>
+                <% if !@dependency_matches.empty? %>
 
-                         <table class="table vulnerability-table" style="background-color: white;overflow:auto;">
+                    <% @dependency_matches.each_with_index do |dependency, i| %>
+                        <% if !@vulnerability_matches[i].empty? %>
+                        <div><%= dependency.file_name %></div>
+
+                            <!-- Display vulns -->
+                            <table class="table vulnerability-table" style="background-color: white;overflow:auto;">
                                 <thead>
-                                    <tr>Vulnerabilities...</tr>
+                                    <tr>
+                                    <td>Vulnerabilities...</td>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                    <% vulnerability.each do |val| %>
+                                <% @vulnerability_matches[i].each do |v| %>
                                     <tr>
-                                        <td><% vulnerability %></td>
+                                        <td><%= v.cve_name %></td>
                                     </tr>
-                                    <% end %>    
                                 </tbody>
+                                <% end %>
                             </table>
-                           
+                            <!-- end display vulns -->
+
                         <% end %>
+                    <% end %> 
+
+                <!-- No dependencies stored for this repo -->
                 <% else %>
-                <div>No vulnerable dependencies detected</div>
+                    <div>No vulnerable dependencies detected</div>
                 <% end %>
             </div>
         </div>
