@@ -14,14 +14,14 @@
 ActiveRecord::Schema.define(version: 20160407175548) do
 
   create_table "dependencies", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "file_name"
     t.string   "file_path"
     t.string   "md5"
     t.string   "sha1"
     t.integer  "num_evidence"
-    t.string   "descriptions"
+    t.text     "descriptions"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "repository_id"
     t.integer  "dependency_id"
   end
