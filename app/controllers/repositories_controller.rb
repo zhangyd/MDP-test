@@ -100,16 +100,6 @@ class RepositoriesController < ApplicationController
       count += 1
     end
     
-<<<<<<< HEAD
-    import_report_dependencies(doc.to_xml)
-    import_report_vulnerabilities(doc.to_xml)
-
-  end
-
-
-  def import_report_vulnerabilities(report)
-    doc = Nokogiri::XML(doc.to_xml)
-=======
     import_report_dependencies(report_name, doc.to_xml)
     import_report_vulnerabilities(report_name, doc.to_xml)
 
@@ -144,7 +134,6 @@ class RepositoriesController < ApplicationController
   # Store vulnerabilities in db
   def import_report_vulnerabilities(report_name, report)
     doc = Nokogiri::XML(report)
->>>>>>> 6568ef1def76218bb791a382b0111aa4b76b2ece
     vulnerability = doc.search("vulnerability").map do |vulnerability|
       id = vulnerability.parent.parent
       id = id.first_element_child
@@ -177,34 +166,6 @@ class RepositoriesController < ApplicationController
     
   end
 
-<<<<<<< HEAD
-  def import_report_dependencies(report)
-    doc = Nokogiri::XML(doc.to_xml)
-    dependency = doc.search("dependency").map do |dependency|
-      %w[
-        dependencyid fileName filePath md5 sha1 description
-      ].each_with_object({}) do |n, o|
-        o[n] = dependency.at(n)
-      end
-    end
-
-    dependency.each do |element|
-      @d = Dependency.new
-      @d.file_name = element["fileName"].text
-      @d.file_path = element["filePath"].text
-      @d.md5 = element["md5"].text
-      @d.sha1 = element["sha1"].text
-      #@d.descriptions = element["description"].text
-      #@d.dependency_id = element["dependencyid"].text
-      @d.repository_id = Report.where(filename: report_name).last.id
-      @d.save
-
-    end   
-
-  end
-
-=======
->>>>>>> 6568ef1def76218bb791a382b0111aa4b76b2ece
 
   # **********************************************************************************
 
