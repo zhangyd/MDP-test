@@ -14,15 +14,21 @@
 ActiveRecord::Schema.define(version: 20160412050254) do
 
   create_table "dependencies", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "file_name"
     t.string   "file_path"
     t.string   "md5"
     t.string   "sha1"
     t.integer  "num_evidence"
+<<<<<<< HEAD
     t.string   "descriptions"
     t.integer  "report_id"
+=======
+    t.text     "descriptions"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "repository_id"
+    t.integer  "dependency_id"
+>>>>>>> 4dcad7a0ec11d022558a046e96ac7f3e6e7e07e8
   end
 
   create_table "reports", force: true do |t|
