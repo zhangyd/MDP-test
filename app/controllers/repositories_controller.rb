@@ -47,9 +47,9 @@ class RepositoriesController < ApplicationController
 
   #TODO: Fail if no repos are selected
   def scanselected
-    repos = params[:repos]
+    @repos = params[:repos]
 
-    repos.each do |repo|
+    @repos.each do |repo|
 
       name = Repository.find(repo.to_i).name
       owner = Repository.find(repo.to_i).owner
@@ -85,8 +85,11 @@ class RepositoriesController < ApplicationController
       # Store generated report information in db
       import_report(report_name)
     end 
+    redirect_to summary_path
+  end
 
-    redirect_to root_path
+  def summary
+    @repos = ["1"]
   end
 
   def import_report(report_name)

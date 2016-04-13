@@ -1,0 +1,39 @@
+<body class="main-page-body">
+    <div class="container">
+        <h2>Summary</h2>
+        <%if @repos.size === 1 %>
+            <p><%= @repos.size %> repository scanned</p>
+        <%else %>
+            <p><%= @repos.size %> repositories scanned</p>
+        <%end%>
+
+                <table class="table repository-table" style="background-color: white;overflow:auto;">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Owner</td>
+                            <td>Url</td>
+                            <td>Results</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <% @repos.each do |repo| %>
+                        <tr>
+                            <td><%= Repository.find(repo.to_i).name %></td>
+                            <td><%= Repository.find(repo.to_i).owner %></td>
+                            <td><%= Repository.find(repo.to_i).url %></td>
+                            <% if Vulnerability.where(:repository_id => repo.to_i).blank? %>
+                                <td>No vulnerabilities found</td>
+                            <% else %>
+                                <td>Vulnerabilties found! </td>
+                            <% end %>
+                            <td><%= link_to 'Show Dependencies', dependencies_path(Repository.find(repo.to_i).id) %></td>
+                        </tr>
+                    </tbody>
+                    <% end %>
+                </table>
+                <!-- end display vulns -->
+ 
+
+    </div>
+</body>
