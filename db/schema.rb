@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160407175548) do
+ActiveRecord::Schema.define(version: 20160412050254) do
 
   create_table "dependencies", force: true do |t|
     t.datetime "created_at"
@@ -22,8 +22,7 @@ ActiveRecord::Schema.define(version: 20160407175548) do
     t.string   "sha1"
     t.integer  "num_evidence"
     t.string   "descriptions"
-    t.integer  "repository_id"
-    t.integer  "dependency_id"
+    t.integer  "report_id"
   end
 
   create_table "reports", force: true do |t|
@@ -43,6 +42,7 @@ ActiveRecord::Schema.define(version: 20160407175548) do
     t.string   "name"
     t.string   "userpath"
     t.string   "repopath"
+    t.integer  "user_id"
   end
 
   create_table "users", force: true do |t|
@@ -73,11 +73,10 @@ ActiveRecord::Schema.define(version: 20160407175548) do
     t.string   "cai"
     t.string   "cii"
     t.string   "severity"
-    t.integer  "dependency_id", limit: 255
+    t.string   "dependency_id"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "repository_id"
   end
 
 end

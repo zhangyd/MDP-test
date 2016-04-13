@@ -20,6 +20,7 @@ class RepositoriesController < ApplicationController
 
   # GET /repositories/new
   def new
+    # We don't associate this with the user yet!
     @repository = Repository.new
   end
 
@@ -29,18 +30,13 @@ class RepositoriesController < ApplicationController
 
   # get correct dependencies to display in database
   def dependencies
-    # Deps and Vulns are identified by the repository_id
-    # Vulns are also identified by the dependency_id
-    @report_id = Report.where(:repository_id => params[:id])[0].id
-    @dependency_matches = []
-    @dependency_matches = Dependency.where(:repository_id => @report_id)
-
-    @vulnerability_matches = []
-    # @vulnerability_matches = Vulnerability.where("repository_id =? AND dependency_id =?", @report_id, d.dependency_id)
-    @dependency_matches.each_with_index do |d, i|
-      @vulnerability_matches << Vulnerability.where("(repository_id =?) AND (dependency_id =?)", @report_id, @dependency_matches[i].dependency_id)
+    @report_id = Report.where(:repository_id => params[:id]).last.id # get most recent report
+    @dependencies = Dependency.where(:report_id => @report_id)
+    @vulnerabilities = []
+    @dependencies.each do |dep|
+      @vulnerabilities << Vulnerability.where(:dependency_id => dep.id)
     end
-    return @vulnerability_matches
+
   end
 
   # **********************************************************************************
@@ -50,18 +46,16 @@ class RepositoriesController < ApplicationController
     repos = params[:repos]
 
     repos.each do |repo|
-
-      name = Repository.find(repo.to_i).name
-      owner = Repository.find(repo.to_i).owner
-      url = Repository.find(repo.to_i).url
-
-      repo_id = Repository.find(repo.to_i).id
-      repo_name = Repository.find(repo.to_i).name
+      repo = Repository.find(repo.to_i)
+      repo_name = repo.name
+      owner = repo.owner
+      url = repo.url
+      repo_id = repo.id
 
       # user_name = Repository.find(params[:id]).owner
-      url = Repository.find(repo.to_i).url
-      userpath = Repository.find(repo.to_i).userpath
-      repopath = Repository.find(repo.to_i).repopath
+      url = repo.url
+      userpath = repo.userpath
+      repopath = repo.repopath
 
       # Pull repository if not pulled yet
       if !(File.directory?(repopath)) then
@@ -72,8 +66,10 @@ class RepositoriesController < ApplicationController
       t = Time.new
       report_path = userpath + '/report'
       report_name = "#{report_path}/#{t.strftime('%Y%m%d_%H%M%S')}.xml"
-      @report = Report.new(:repository_id => repo_id, :filename => report_name)
-      @report.save
+      @report = repo.reports.create(:repository_id => repo_id, :filename => report_name)
+      # @report = Report.new(:repository_id => repo_id, :filename => report_name)
+      # @report.save
+
       # Run Dependency Check
       system "mkdir #{report_path}" #HERE
       cmd = "dependency-check --project #{repo_name} --format XML -o #{report_name} --scan #{repopath}"
@@ -90,50 +86,29 @@ class RepositoriesController < ApplicationController
   end
 
   def import_report(report_name)
-    #modifies xml report
+    # first map all dependencies to correct report
+    thisReport = Report.find_by(:filename => report_name)
+
+    # add unique identifier to each dependency in report
     count = 0
-    doc = Nokogiri::XML(open(report_name)) 
+    doc = Nokogiri::XML(open(report_name))
     doc.css('dependency').each do |node|
-      dependencyid = Nokogiri::XML::Node.new "dependencyid", doc
-      dependencyid.content = count
-      node.first_element_child.before(dependencyid)
+      depId = Nokogiri::XML::Node.new "dependency_id", doc
+      depId.content = count
+      node.first_element_child.before(depId)
       count += 1
     end
-    
-    import_report_dependencies(report_name, doc.to_xml)
-    import_report_vulnerabilities(report_name, doc.to_xml)
 
-  end
-
-  # Store dependencies in db
-  def import_report_dependencies(report_name, report)
-    doc = Nokogiri::XML(report)
+    # get list of dependencies
     dependency = doc.search("dependency").map do |dependency|
-      %w[
-        dependencyid fileName filePath md5 sha1 description
-      ].each_with_object({}) do |n, o|
-        o[n] = dependency.at(n)
-      end
+        %w[
+            dependency_id fileName filePath md5 sha1 description
+            ].each_with_object({}) do |n, o|
+            o[n] = dependency.at(n)
+        end
     end
 
-    dependency.each do |element|
-      @d = Dependency.new
-      @d.file_name = element["fileName"].text
-      @d.file_path = element["filePath"].text
-      @d.md5 = element["md5"].text
-      @d.sha1 = element["sha1"].text
-      #@d.descriptions = element["description"].text TODO: should we keep this?
-      @d.dependency_id = element["dependencyid"].text
-      @d.repository_id = Report.where(filename: report_name).last.id
-      @d.save
-
-    end   
-
-  end
-
-  # Store vulnerabilities in db
-  def import_report_vulnerabilities(report_name, report)
-    doc = Nokogiri::XML(report)
+    # get list of vulnerabilities
     vulnerability = doc.search("vulnerability").map do |vulnerability|
       id = vulnerability.parent.parent
       id = id.first_element_child
@@ -146,26 +121,36 @@ class RepositoriesController < ApplicationController
       end
     end
 
-    vulnerability.each do |element|
-      @v = Vulnerability.new
-      @v.cve_name = element["name"]
-      @v.cvss_score = element["cvssScore"]
-      @v.cav = element["cvssAccessVector"]
-      @v.cac = element["cvssAccessComplexity"]
-      @v.ca = element["cvssAuthenticationr"]
-      @v.cci = element["cvssConfidentialImpact"]
-      @v.cai = element["cvssAvailabilityImpact"]
-      #@v.cii = element["cvssIntegrityImpact"]
-      @v.severity = element["severity"]
-      @v.description = element["description"]
-      # !!! Need to store the correct Dependency_ID of integer type HERE 
-      @v.repository_id = Report.where(filename: report_name).last.id
-      @v.dependency_id = element["dependency_id"]
-      @v.save
-    end   
-    
-  end
+    # store dependencies and vulnerabilities
+    # a vulnerability belongs to a dependency when
+    # vulnerability["dependency_id"] == dependency["dependency_id"].text
+    dependency.each do |dep|
+      @dependency = thisReport.dependencies.create(
+        :file_name => dep["fileName"].text,
+        :file_path => dep["filePath"].text,
+        :md5 => dep["md5"].text,
+        :sha1 => dep["sha1"].text)
+        # :descriptions => dep["description"].text )
 
+      vulnerability.each do |vuln|
+        if vuln["dependency_id"] == dep["dependency_id"].text
+          @vulnerability = @dependency.vulnerabilities.create(
+            :cve_name => vuln["name"],
+            :cvss_score => vuln["cvssScore"],
+            :cav => vuln["cvssAccessVector"],
+            :cac => vuln["cvssAccessComplexity"],
+            :ca => vuln["cvssAuthenticationr"],
+            :cci => vuln["cvssConfidentialImpact"], 
+            :cai => vuln["cvssAvailabilityImpact"],
+            :cii => vuln["cvssIntegrityImpact"],
+            :severity => vuln["severity"],
+            :description => vuln["description"] )
+        end
+
+      end
+
+    end
+  end # end import_report
 
   # **********************************************************************************
 

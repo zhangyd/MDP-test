@@ -2,28 +2,47 @@
     <div class="vulnerability-page">
         <div class="container">
             <div class="risk-chart">
-                <h2>Dependencies</h2>
+                <h2>Listing Vulnerable Dependencies</h2>
 
-                <% if !@dependency_matches.empty? %>
+                <% if !@dependencies.empty? %>
 
-                    <% @dependency_matches.each_with_index do |dependency, i| %>
-                        <% if !@vulnerability_matches[i].empty? %>
-                        <div><%= dependency.file_name %></div>
+                    <% @dependencies.each_with_index do |dependency, i| %>
+                        <% if !@vulnerabilities[i].empty? %>
+                        <div>
+                        Dependency name: <%= dependency.file_name %>
+                        </div>
 
                             <!-- Display vulns -->
+                            <h4>Vulnerabilities...</h4>
                             <table class="table vulnerability-table" style="background-color: white;overflow:auto;">
                                 <thead>
                                     <tr>
-                                    <td>Vulnerabilities...</td>
+                                    <th>CVE Name</th>
+                                    <th>CVSS Score</th>
+                                    <th>CVSS Access Vector</th>
+                                    <th>CVSS Access Complexity</th>
+                                    <th>CVSS Authentication</th>
+                                    <th>CVSS Confidential Impact</th>
+                                    <th>CVSS Availability Impact</th>
+                                    <th>Severity</th>
+                                    <th>Description</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <% @vulnerability_matches[i].each do |v| %>
+                                <% @vulnerabilities[i].each do |v| %>
                                     <tr>
-                                        <td><% v.cve_name %></td>
+                                        <td><%= v.cve_name %></td>
+                                        <td><%= v.cvss_score %></td>
+                                        <td><%= v.cav %></td>
+                                        <td><%= v.cac %></td>
+                                        <td><%= v.ca %></td>
+                                        <td><%= v.cci %></td>
+                                        <td><%= v.cai %></td>
+                                        <td><%= v.severity %></td>
+                                        <td><%= v.description %></td>
                                     </tr>
-                                </tbody>
                                 <% end %>
+                                </tbody>
                             </table>
                             <!-- end display vulns -->
 
