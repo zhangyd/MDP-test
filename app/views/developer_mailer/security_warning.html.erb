@@ -4,8 +4,59 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
   </head>
   <body>
-    <h1>Hello There!</h1>
+    <h1>Hello <%= @owner %></h1>
+
+    <p>We have found vulnerable dependencies in your project and they are listed below</p>
     
-    <p>Thanks for joining and have a great day!</p>
+    <% if !@dependencies.empty? %>
+
+        <% @dependencies.each_with_index do |dependency, i| %>
+            <% if !@vulnerabilities[i].empty? %>
+            <div>
+            Dependency name: <%= dependency.file_name %>
+            </div>
+
+                <!-- Display vulns -->
+                <h4>Vulnerabilities...</h4>
+                <table class="table vulnerability-table" style="background-color: white;overflow:auto;">
+                    <thead>
+                        <tr>
+                        <th>CVE Name</th>
+                        <th>CVSS Score</th>
+                        <th>CVSS Access Vector</th>
+                        <th>CVSS Access Complexity</th>
+                        <th>CVSS Authentication</th>
+                        <th>CVSS Confidential Impact</th>
+                        <th>CVSS Availability Impact</th>
+                        <th>Severity</th>
+                        <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <% @vulnerabilities[i].each do |v| %>
+                        <tr>
+                            <td><%= v.cve_name %></td>
+                            <td><%= v.cvss_score %></td>
+                            <td><%= v.cav %></td>
+                            <td><%= v.cac %></td>
+                            <td><%= v.ca %></td>
+                            <td><%= v.cci %></td>
+                            <td><%= v.cai %></td>
+                            <td><%= v.severity %></td>
+                            <td><%= v.description %></td>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                </table>
+                <!-- end display vulns -->
+
+            <% end %>
+        <% end %> 
+
+    <!-- No dependencies stored for this repo -->
+    <% else %>
+        <div>No vulnerable dependencies detected</div>
+    <% end %>
+
   </body>
 </html>

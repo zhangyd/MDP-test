@@ -37,6 +37,11 @@ class RepositoriesController < ApplicationController
       @vulnerabilities << Vulnerability.where(:dependency_id => dep.id)
     end
 
+    repo = Repository.where(:id => params[:id]).last
+    @email = repo.email
+    @owner = repo.owner
+
+    DeveloperMailer.security_warning(@email, @owner, @dependencies, @vulnerabilities).deliver
   end
 
   # **********************************************************************************
@@ -72,20 +77,20 @@ class RepositoriesController < ApplicationController
 
       # Run Dependency Check
       system "mkdir #{report_path}" #HERE
-      cmd = "dependency-check --project #{repo_name} --format XML -o #{report_name} --scan #{repopath}"
+      cmd = "dependency-check --app #{repo_name} --format XML -o #{report_name} --scan #{repopath}"
       system cmd
 
       # send email
       # DeveloperMailer.security_warning(Repository.find(repo.to_i).email).deliver
       
       # Store generated report information in db
-      import_report(report_name)
+      import_report(report_name, repo.email)
     end 
 
     redirect_to root_path
   end
 
-  def import_report(report_name)
+  def import_report(report_name, email)
     # first map all dependencies to correct report
     thisReport = Report.find_by(:filename => report_name)
 
@@ -150,6 +155,7 @@ class RepositoriesController < ApplicationController
       end
 
     end
+
   end # end import_report
 
   # **********************************************************************************

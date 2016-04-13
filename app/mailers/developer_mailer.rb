@@ -1,7 +1,10 @@
 class DeveloperMailer < ActionMailer::Base
-  default from: "zhangyd0214@gmail.com"
+  default from: "Your Security Team"
 
-  def security_warning(email)
-    mail(:to => email, :subject => "Welcome to My Awesome Site")
+  def security_warning(email, owner, dependencies, vulnerabilities)
+  	@dependencies = dependencies
+  	@vulnerabilities = vulnerabilities
+  	@owner = owner
+    mail(:to => email, :subject => "ATTN: Vulnerable Dependencies Found In Your Project")
   end
 end

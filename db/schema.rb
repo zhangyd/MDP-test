@@ -19,16 +19,10 @@ ActiveRecord::Schema.define(version: 20160412050254) do
     t.string   "md5"
     t.string   "sha1"
     t.integer  "num_evidence"
-<<<<<<< HEAD
-    t.string   "descriptions"
-    t.integer  "report_id"
-=======
     t.text     "descriptions"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "repository_id"
-    t.integer  "dependency_id"
->>>>>>> 4dcad7a0ec11d022558a046e96ac7f3e6e7e07e8
+    t.integer  "report_id"
   end
 
   create_table "reports", force: true do |t|
