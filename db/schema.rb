@@ -66,14 +66,14 @@ ActiveRecord::Schema.define(version: 20160412050254) do
   create_table "vulnerabilities", force: true do |t|
     t.string   "cve_name"
     t.decimal  "cvss_score"
-    t.string   "cav"
+    t.strng   "cav"
     t.string   "cac"
     t.string   "ca"
     t.string   "cci"
     t.string   "cai"
     t.string   "cii"
     t.string   "severity"
-    t.string   "dependency_id"
+    t.integer  "dependency_id"   #modify from string to integer
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -1,0 +1,26 @@
+current directory: /Users/QLH/mdp/reposec/vendor/bundle/gems/digest-murmurhash-1.1.1/ext/digest/murmurhash
+/System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/bin/ruby -r ./siteconf20160428-90940-vmurnu.rb extconf.rb
+creating Makefile
+
+current directory: /Users/QLH/mdp/reposec/vendor/bundle/gems/digest-murmurhash-1.1.1/ext/digest/murmurhash
+make "DESTDIR=" clean
+
+current directory: /Users/QLH/mdp/reposec/vendor/bundle/gems/digest-murmurhash-1.1.1/ext/digest/murmurhash
+make "DESTDIR="
+compiling 1.c
+compiling 2.c
+compiling 2a.c
+compiling 3_x64_128.c
+compiling 3_x86_128.c
+compiling 3_x86_32.c
+compiling 64a.c
+compiling 64b.c
+compiling aligned2.c
+compiling init.c
+compiling neutral2.c
+linking shared-object digest/murmurhash/ext.bundle
+
+current directory: /Users/QLH/mdp/reposec/vendor/bundle/gems/digest-murmurhash-1.1.1/ext/digest/murmurhash
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 ext.bundle ./.gem.20160428-90940-dvygdc/digest/murmurhash
+installing default ext libraries

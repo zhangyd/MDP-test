@@ -1,0 +1,14 @@
+current directory: /Users/QLH/mdp/reposec/vendor/bundle/gems/json-1.8.3/ext/json
+/System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/bin/ruby -r ./siteconf20160428-90940-j48cjm.rb extconf.rb
+creating Makefile
+
+current directory: /Users/QLH/mdp/reposec/vendor/bundle/gems/json-1.8.3/ext/json
+make "DESTDIR=" clean
+
+current directory: /Users/QLH/mdp/reposec/vendor/bundle/gems/json-1.8.3/ext/json
+make "DESTDIR="
+make: Nothing to be done for `all'.
+
+current directory: /Users/QLH/mdp/reposec/vendor/bundle/gems/json-1.8.3/ext/json
+make "DESTDIR=" install
+installing default libraries

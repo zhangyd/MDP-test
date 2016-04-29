@@ -1,0 +1,427 @@
+current directory: /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/ext/rugged
+/System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/bin/ruby -r ./siteconf20160428-90940-128f9r6.rb extconf.rb
+checking for gmake... no
+checking for make... yes
+checking for cmake... yes
+checking for pkg-config... yes
+ -- cmake .. -DBUILD_CLAR=OFF -DTHREADSAFE=ON -DBUILD_SHARED_LIBS=OFF -DCMAKE_C_FLAGS=-fPIC -DCMAKE_BUILD_TYPE=RelWithDebInfo -G "Unix Makefiles"
+ -- /usr/bin/make
+checking for main() in -lgit2... yes
+checking for git2.h... yes
+creating Makefile
+
+To see why this extension failed to compile, please check the mkmf.log which can be found here:
+
+  /Users/QLH/mdp/reposec/vendor/bundle/extensions/universal-darwin-15/2.0.0/rugged-0.24.0/mkmf.log
+
+current directory: /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/ext/rugged
+make "DESTDIR=" clean
+
+current directory: /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/ext/rugged
+make "DESTDIR="
+compiling rugged.c
+compiling rugged_backend.c
+compiling rugged_blame.c
+compiling rugged_blob.c
+rugged_blob.c:506:13: warning: variable 'error' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
+        } else if (TYPE(rb_other) == T_STRING) {
+                   ^~~~~~~~~~~~~~~~~~~~~~~~~~
+/System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/include/ruby-2.0.0/ruby/ruby.h:513:17: note: expanded from macro 'TYPE'
+#define TYPE(x) rb_type((VALUE)(x))
+                ^
+rugged_blob.c:515:25: note: uninitialized use occurs here
+        rugged_exception_check(error);
+                               ^~~~~
+rugged_blob.c:506:9: note: remove the 'if' if its condition is always true
+        } else if (TYPE(rb_other) == T_STRING) {
+               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rugged_blob.c:475:11: note: initialize the variable 'error' to silence this warning
+        int error;
+                 ^
+                  = 0
+rugged_blob.c:506:13: warning: variable 'patch' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
+        } else if (TYPE(rb_other) == T_STRING) {
+                   ^~~~~~~~~~~~~~~~~~~~~~~~~~
+/System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/include/ruby-2.0.0/ruby/ruby.h:513:17: note: expanded from macro 'TYPE'
+#define TYPE(x) rb_type((VALUE)(x))
+                ^
+rugged_blob.c:517:32: note: uninitialized use occurs here
+        return rugged_patch_new(self, patch);
+                                      ^~~~~
+rugged_blob.c:506:9: note: remove the 'if' if its condition is always true
+        } else if (TYPE(rb_other) == T_STRING) {
+               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rugged_blob.c:472:18: note: initialize the variable 'patch' to silence this warning
+        git_patch *patch;
+                        ^
+                         = NULL
+2 warnings generated.
+rugged_blob.c:506:13: warning: variable 'error' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
+        } else if (TYPE(rb_other) == T_STRING) {
+                   ^~~~~~~~~~~~~~~~~~~~~~~~~~
+/System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/include/ruby-2.0.0/ruby/ruby.h:513:17: note: expanded from macro 'TYPE'
+#define TYPE(x) rb_type((VALUE)(x))
+                ^
+rugged_blob.c:515:25: note: uninitialized use occurs here
+        rugged_exception_check(error);
+                               ^~~~~
+rugged_blob.c:506:9: note: remove the 'if' if its condition is always true
+        } else if (TYPE(rb_other) == T_STRING) {
+               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rugged_blob.c:475:11: note: initialize the variable 'error' to silence this warning
+        int error;
+                 ^
+                  = 0
+rugged_blob.c:506:13: warning: variable 'patch' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
+        } else if (TYPE(rb_other) == T_STRING) {
+                   ^~~~~~~~~~~~~~~~~~~~~~~~~~
+/System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/include/ruby-2.0.0/ruby/ruby.h:513:17: note: expanded from macro 'TYPE'
+#define TYPE(x) rb_type((VALUE)(x))
+                ^
+rugged_blob.c:517:32: note: uninitialized use occurs here
+        return rugged_patch_new(self, patch);
+                                      ^~~~~
+rugged_blob.c:506:9: note: remove the 'if' if its condition is always true
+        } else if (TYPE(rb_other) == T_STRING) {
+               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rugged_blob.c:472:18: note: initialize the variable 'patch' to silence this warning
+        git_patch *patch;
+                        ^
+                         = NULL
+2 warnings generated.
+compiling rugged_branch.c
+compiling rugged_branch_collection.c
+rugged_branch_collection.c:75:1: warning: control may reach end of non-void function [-Wreturn-type]
+}
+^
+rugged_branch_collection.c:104:1: warning: control may reach end of non-void function [-Wreturn-type]
+}
+^
+2 warnings generated.
+rugged_branch_collection.c:75:1: warning: control may reach end of non-void function [-Wreturn-type]
+}
+^
+rugged_branch_collection.c:104:1: warning: control may reach end of non-void function [-Wreturn-type]
+}
+^
+2 warnings generated.
+compiling rugged_commit.c
+compiling rugged_config.c
+rugged_config.c:154:2: warning: variable 'error' is used uninitialized whenever switch default is taken [-Wsometimes-uninitialized]
+        default:
+        ^~~~~~~
+rugged_config.c:159:25: note: uninitialized use occurs here
+        rugged_exception_check(error);
+                               ^~~~~
+rugged_config.c:133:11: note: initialize the variable 'error' to silence this warning
+        int error;
+                 ^
+                  = 0
+1 warning generated.
+rugged_config.c:154:2: warning: variable 'error' is used uninitialized whenever switch default is taken [-Wsometimes-uninitialized]
+        default:
+        ^~~~~~~
+rugged_config.c:159:25: note: uninitialized use occurs here
+        rugged_exception_check(error);
+                               ^~~~~
+rugged_config.c:133:11: note: initialize the variable 'error' to silence this warning
+        int error;
+                 ^
+                  = 0
+1 warning generated.
+compiling rugged_cred.c
+compiling rugged_diff.c
+rugged_diff.c:563:13: warning: variable 'format' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
+        } else if (SYM2ID(rb_format) == rb_intern("name_status")) {
+                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/include/ruby-2.0.0/ruby/ruby.h:364:19: note: expanded from macro 'SYM2ID'
+#define SYM2ID(x) RSHIFT((unsigned long)(x),RUBY_SPECIAL_SHIFT)
+                  ^
+/System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/include/ruby-2.0.0/universal-darwin15/ruby/config.h:258:21: note: expanded from macro 'RSHIFT'
+#define RSHIFT(x,y) ((x)>>(int)(y))
+                    ^
+rugged_diff.c:569:31: note: uninitialized use occurs here
+        error = git_diff_print(diff, format, each_line_cb, &exception);
+                                     ^~~~~~
+rugged_diff.c:563:9: note: remove the 'if' if its condition is always true
+        } else if (SYM2ID(rb_format) == rb_intern("name_status")) {
+               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rugged_diff.c:541:2: note: variable 'format' is declared here
+        git_diff_format_t format;
+        ^
+1 warning generated.
+rugged_diff.c:563:13: warning: variable 'format' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
+        } else if (SYM2ID(rb_format) == rb_intern("name_status")) {
+                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/include/ruby-2.0.0/ruby/ruby.h:364:19: note: expanded from macro 'SYM2ID'
+#define SYM2ID(x) RSHIFT((unsigned long)(x),RUBY_SPECIAL_SHIFT)
+                  ^
+/System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/include/ruby-2.0.0/universal-darwin15/ruby/config.h:258:21: note: expanded from macro 'RSHIFT'
+#define RSHIFT(x,y) ((x)>>(int)(y))
+                    ^
+rugged_diff.c:569:31: note: uninitialized use occurs here
+        error = git_diff_print(diff, format, each_line_cb, &exception);
+                                     ^~~~~~
+rugged_diff.c:563:9: note: remove the 'if' if its condition is always true
+        } else if (SYM2ID(rb_format) == rb_intern("name_status")) {
+               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rugged_diff.c:541:2: note: variable 'format' is declared here
+        git_diff_format_t format;
+        ^
+1 warning generated.
+compiling rugged_diff_delta.c
+compiling rugged_diff_hunk.c
+compiling rugged_diff_line.c
+compiling rugged_index.c
+rugged_index.c:825:14: warning: variable 'error' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
+                } else if (rb_obj_is_kind_of(rb_other, rb_cRuggedTree)) {
+                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rugged_index.c:836:25: note: uninitialized use occurs here
+        rugged_exception_check(error);
+                               ^~~~~
+rugged_index.c:825:10: note: remove the 'if' if its condition is always true
+                } else if (rb_obj_is_kind_of(rb_other, rb_cRuggedTree)) {
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rugged_index.c:801:11: note: initialize the variable 'error' to silence this warning
+        int error;
+                 ^
+                  = 0
+1 warning generated.
+rugged_index.c:825:14: warning: variable 'error' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
+                } else if (rb_obj_is_kind_of(rb_other, rb_cRuggedTree)) {
+                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rugged_index.c:836:25: note: uninitialized use occurs here
+        rugged_exception_check(error);
+                               ^~~~~
+rugged_index.c:825:10: note: remove the 'if' if its condition is always true
+                } else if (rb_obj_is_kind_of(rb_other, rb_cRuggedTree)) {
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rugged_index.c:801:11: note: initialize the variable 'error' to silence this warning
+        int error;
+                 ^
+                  = 0
+1 warning generated.
+compiling rugged_note.c
+compiling rugged_object.c
+compiling rugged_patch.c
+compiling rugged_rebase.c
+rugged_rebase.c:127:7: warning: variable 'rebase' is used uninitialized whenever 'if' condition is true [-Wsometimes-uninitialized]
+                if ((error = git_annotated_commit_from_revspec(&onto, repo, str_onto)) < 0)
+                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rugged_rebase.c:140:43: note: uninitialized use occurs here
+        return rugged_rebase_new(klass, rb_repo, rebase);
+                                                 ^~~~~~
+rugged_rebase.c:127:3: note: remove the 'if' if its condition is always false
+                if ((error = git_annotated_commit_from_revspec(&onto, repo, str_onto)) < 0)
+                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rugged_rebase.c:122:6: warning: variable 'rebase' is used uninitialized whenever 'if' condition is true [-Wsometimes-uninitialized]
+        if ((error = git_annotated_commit_from_revspec(&branch, repo, str_branch)) < 0 ||
+            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rugged_rebase.c:140:43: note: uninitialized use occurs here
+        return rugged_rebase_new(klass, rb_repo, rebase);
+                                                 ^~~~~~
+rugged_rebase.c:122:2: note: remove the 'if' if its condition is always false
+        if ((error = git_annotated_commit_from_revspec(&branch, repo, str_branch)) < 0 ||
+        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rugged_rebase.c:122:6: warning: variable 'rebase' is used uninitialized whenever '||' condition is true [-Wsometimes-uninitialized]
+        if ((error = git_annotated_commit_from_revspec(&branch, repo, str_branch)) < 0 ||
+            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rugged_rebase.c:140:43: note: uninitialized use occurs here
+        return rugged_rebase_new(klass, rb_repo, rebase);
+                                                 ^~~~~~
+rugged_rebase.c:122:6: note: remove the '||' if its condition is always false
+        if ((error = git_annotated_commit_from_revspec(&branch, repo, str_branch)) < 0 ||
+            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rugged_rebase.c:105:20: note: initialize the variable 'rebase' to silence this warning
+        git_rebase *rebase;
+                          ^
+                           = NULL
+rugged_rebase.c:249:6: warning: variable 'committer' is used uninitialized whenever 'if' condition is true [-Wsometimes-uninitialized]
+        if (NIL_P(rb_committer))
+            ^~~~~~~~~~~~~~~~~~~
+/System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/include/ruby-2.0.0/ruby/ruby.h:446:18: note: expanded from macro 'NIL_P'
+#define NIL_P(v) !((VALUE)(v) != Qnil)
+                 ^~~~~~~~~~~~~~~~~~~~~
+rugged_rebase.c:259:21: note: uninitialized use occurs here
+        git_signature_free(committer);
+                           ^~~~~~~~~
+rugged_rebase.c:249:2: note: remove the 'if' if its condition is always false
+        if (NIL_P(rb_committer))
+        ^~~~~~~~~~~~~~~~~~~~~~~~
+rugged_rebase.c:233:42: note: initialize the variable 'committer' to silence this warning
+        git_signature *author = NULL, *committer;
+                                                ^
+                                                 = NULL
+4 warnings generated.
+rugged_rebase.c:127:7: warning: variable 'rebase' is used uninitialized whenever 'if' condition is true [-Wsometimes-uninitialized]
+                if ((error = git_annotated_commit_from_revspec(&onto, repo, str_onto)) < 0)
+                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rugged_rebase.c:140:43: note: uninitialized use occurs here
+        return rugged_rebase_new(klass, rb_repo, rebase);
+                                                 ^~~~~~
+rugged_rebase.c:127:3: note: remove the 'if' if its condition is always false
+                if ((error = git_annotated_commit_from_revspec(&onto, repo, str_onto)) < 0)
+                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rugged_rebase.c:122:6: warning: variable 'rebase' is used uninitialized whenever 'if' condition is true [-Wsometimes-uninitialized]
+        if ((error = git_annotated_commit_from_revspec(&branch, repo, str_branch)) < 0 ||
+            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rugged_rebase.c:140:43: note: uninitialized use occurs here
+        return rugged_rebase_new(klass, rb_repo, rebase);
+                                                 ^~~~~~
+rugged_rebase.c:122:2: note: remove the 'if' if its condition is always false
+        if ((error = git_annotated_commit_from_revspec(&branch, repo, str_branch)) < 0 ||
+        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rugged_rebase.c:122:6: warning: variable 'rebase' is used uninitialized whenever '||' condition is true [-Wsometimes-uninitialized]
+        if ((error = git_annotated_commit_from_revspec(&branch, repo, str_branch)) < 0 ||
+            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rugged_rebase.c:140:43: note: uninitialized use occurs here
+        return rugged_rebase_new(klass, rb_repo, rebase);
+                                                 ^~~~~~
+rugged_rebase.c:122:6: note: remove the '||' if its condition is always false
+        if ((error = git_annotated_commit_from_revspec(&branch, repo, str_branch)) < 0 ||
+            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rugged_rebase.c:105:20: note: initialize the variable 'rebase' to silence this warning
+        git_rebase *rebase;
+                          ^
+                           = NULL
+rugged_rebase.c:249:6: warning: variable 'committer' is used uninitialized whenever 'if' condition is true [-Wsometimes-uninitialized]
+        if (NIL_P(rb_committer))
+            ^~~~~~~~~~~~~~~~~~~
+/System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/include/ruby-2.0.0/ruby/ruby.h:446:18: note: expanded from macro 'NIL_P'
+#define NIL_P(v) !((VALUE)(v) != Qnil)
+                 ^~~~~~~~~~~~~~~~~~~~~
+rugged_rebase.c:259:21: note: uninitialized use occurs here
+        git_signature_free(committer);
+                           ^~~~~~~~~
+rugged_rebase.c:249:2: note: remove the 'if' if its condition is always false
+        if (NIL_P(rb_committer))
+        ^~~~~~~~~~~~~~~~~~~~~~~~
+rugged_rebase.c:233:42: note: initialize the variable 'committer' to silence this warning
+        git_signature *author = NULL, *committer;
+                                                ^
+                                                 = NULL
+4 warnings generated.
+compiling rugged_reference.c
+compiling rugged_reference_collection.c
+compiling rugged_remote.c
+rugged_remote.c:204:1: warning: control may reach end of non-void function [-Wreturn-type]
+}
+^
+rugged_remote.c:486:11: warning: variable 'direction' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
+        else if (id_direction == rb_intern("push"))
+                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rugged_remote.c:494:37: note: uninitialized use occurs here
+        error = git_remote_connect(remote, direction, &callbacks, &custom_headers);
+                                           ^~~~~~~~~
+rugged_remote.c:486:7: note: remove the 'if' if its condition is always true
+        else if (id_direction == rb_intern("push"))
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rugged_remote.c:477:22: note: initialize the variable 'direction' to silence this warning
+        int error, direction;
+                            ^
+                             = 0
+2 warnings generated.
+rugged_remote.c:204:1: warning: control may reach end of non-void function [-Wreturn-type]
+}
+^
+rugged_remote.c:486:11: warning: variable 'direction' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
+        else if (id_direction == rb_intern("push"))
+                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rugged_remote.c:494:37: note: uninitialized use occurs here
+        error = git_remote_connect(remote, direction, &callbacks, &custom_headers);
+                                           ^~~~~~~~~
+rugged_remote.c:486:7: note: remove the 'if' if its condition is always true
+        else if (id_direction == rb_intern("push"))
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rugged_remote.c:477:22: note: initialize the variable 'direction' to silence this warning
+        int error, direction;
+                            ^
+                             = 0
+2 warnings generated.
+compiling rugged_remote_collection.c
+compiling rugged_repo.c
+rugged_repo.c:1648:1: warning: control may reach end of non-void function [-Wreturn-type]
+}
+^
+rugged_repo.c:2484:1: warning: control may reach end of non-void function [-Wreturn-type]
+}
+^
+2 warnings generated.
+rugged_repo.c:1648:1: warning: control may reach end of non-void function [-Wreturn-type]
+}
+^
+rugged_repo.c:2484:1: warning: control may reach end of non-void function [-Wreturn-type]
+}
+^
+2 warnings generated.
+compiling rugged_revwalk.c
+compiling rugged_settings.c
+rugged_settings.c:153:1: warning: control may reach end of non-void function [-Wreturn-type]
+}
+^
+1 warning generated.
+rugged_settings.c:153:1: warning: control may reach end of non-void function [-Wreturn-type]
+}
+^
+1 warning generated.
+compiling rugged_signature.c
+compiling rugged_submodule.c
+compiling rugged_submodule_collection.c
+rugged_submodule_collection.c:245:1: warning: control may reach end of non-void function [-Wreturn-type]
+}
+^
+rugged_submodule_collection.c:265:1: warning: control may reach end of non-void function [-Wreturn-type]
+}
+^
+2 warnings generated.
+rugged_submodule_collection.c:245:1: warning: control may reach end of non-void function [-Wreturn-type]
+}
+^
+rugged_submodule_collection.c:265:1: warning: control may reach end of non-void function [-Wreturn-type]
+}
+^
+2 warnings generated.
+compiling rugged_tag.c
+compiling rugged_tag_collection.c
+compiling rugged_tree.c
+rugged_tree.c:187:1: warning: control may reach end of non-void function [-Wreturn-type]
+}
+^
+rugged_tree.c:526:14: warning: variable 'error' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
+                } else if (rb_obj_is_kind_of(rb_other, rb_cRuggedIndex)) {
+                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rugged_tree.c:537:25: note: uninitialized use occurs here
+        rugged_exception_check(error);
+                               ^~~~~
+rugged_tree.c:526:10: note: remove the 'if' if its condition is always true
+                } else if (rb_obj_is_kind_of(rb_other, rb_cRuggedIndex)) {
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rugged_tree.c:484:11: note: initialize the variable 'error' to silence this warning
+        int error;
+                 ^
+                  = 0
+2 warnings generated.
+rugged_tree.c:187:1: warning: control may reach end of non-void function [-Wreturn-type]
+}
+^
+rugged_tree.c:526:14: warning: variable 'error' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
+                } else if (rb_obj_is_kind_of(rb_other, rb_cRuggedIndex)) {
+                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rugged_tree.c:537:25: note: uninitialized use occurs here
+        rugged_exception_check(error);
+                               ^~~~~
+rugged_tree.c:526:10: note: remove the 'if' if its condition is always true
+                } else if (rb_obj_is_kind_of(rb_other, rb_cRuggedIndex)) {
+                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rugged_tree.c:484:11: note: initialize the variable 'error' to silence this warning
+        int error;
+                 ^
+                  = 0
+2 warnings generated.
+linking shared-object rugged/rugged.bundle
+ld: warning: ignoring file /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/libgit2.a, file was built for archive which is not the architecture being linked (i386): /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/libgit2.a
+
+current directory: /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/ext/rugged
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 rugged.bundle ./.gem.20160428-90940-127aqiy/rugged
+installing default rugged libraries

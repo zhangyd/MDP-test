@@ -1,0 +1,1 @@
+/Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/git2.dir

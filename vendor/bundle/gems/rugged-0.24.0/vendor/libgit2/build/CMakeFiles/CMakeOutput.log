@@ -1,0 +1,414 @@
+The system is: Darwin - 15.0.0 - x86_64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc 
+Build flags: -fPIC
+Id flags: 
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+
+The C compiler identification is AppleClang, found in "/Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/3.2.2/CompilerIdC/a.out"
+
+Determining if the C compiler works passed with the following output:
+Change Dir: /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec4027439808/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec4027439808.dir/build.make CMakeFiles/cmTryCompileExec4027439808.dir/build
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_progress_report /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec4027439808.dir/testCCompiler.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -fPIC    -o CMakeFiles/cmTryCompileExec4027439808.dir/testCCompiler.c.o   -c /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTryCompileExec4027439808
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec4027439808.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -fPIC  -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec4027439808.dir/testCCompiler.c.o  -o cmTryCompileExec4027439808  
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec3334764444/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec3334764444.dir/build.make CMakeFiles/cmTryCompileExec3334764444.dir/build
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_progress_report /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec3334764444.dir/CMakeCCompilerABI.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -fPIC    -o CMakeFiles/cmTryCompileExec3334764444.dir/CMakeCCompilerABI.c.o   -c /usr/local/Cellar/cmake/3.2.2/share/cmake/Modules/CMakeCCompilerABI.c
+Linking C executable cmTryCompileExec3334764444
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3334764444.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -fPIC  -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTryCompileExec3334764444.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec3334764444   
+Apple LLVM version 7.3.0 (clang-703.0.29)
+Target: x86_64-apple-darwin15.0.0
+Thread model: posix
+InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -dynamic -arch x86_64 -macosx_version_min 10.11.0 -o cmTryCompileExec3334764444 -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec3334764444.dir/CMakeCCompilerABI.c.o -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/7.3.0/lib/darwin/libclang_rt.osx.a
+@(#)PROGRAM:ld  PROJECT:ld64-264.3.101
+configured to support archs: armv6 armv7 armv7s arm64 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em (tvOS)
+Library search paths:
+	/usr/lib
+	/usr/local/lib
+Framework search paths:
+	/Library/Frameworks/
+	/System/Library/Frameworks/
+
+
+Parsed C implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTryCompileExec3334764444/fast"]
+  ignore line: [/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec3334764444.dir/build.make CMakeFiles/cmTryCompileExec3334764444.dir/build]
+  ignore line: [/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_progress_report /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp/CMakeFiles 1]
+  ignore line: [Building C object CMakeFiles/cmTryCompileExec3334764444.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -fPIC    -o CMakeFiles/cmTryCompileExec3334764444.dir/CMakeCCompilerABI.c.o   -c /usr/local/Cellar/cmake/3.2.2/share/cmake/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTryCompileExec3334764444]
+  ignore line: [/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3334764444.dir/link.txt --verbose=1]
+  ignore line: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -fPIC  -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTryCompileExec3334764444.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec3334764444   ]
+  ignore line: [Apple LLVM version 7.3.0 (clang-703.0.29)]
+  ignore line: [Target: x86_64-apple-darwin15.0.0]
+  ignore line: [Thread model: posix]
+  ignore line: [InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin]
+  link line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -dynamic -arch x86_64 -macosx_version_min 10.11.0 -o cmTryCompileExec3334764444 -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec3334764444.dir/CMakeCCompilerABI.c.o -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/7.3.0/lib/darwin/libclang_rt.osx.a]
+    arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld] ==> ignore
+    arg [-demangle] ==> ignore
+    arg [-dynamic] ==> ignore
+    arg [-arch] ==> ignore
+    arg [x86_64] ==> ignore
+    arg [-macosx_version_min] ==> ignore
+    arg [10.11.0] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTryCompileExec3334764444] ==> ignore
+    arg [-search_paths_first] ==> ignore
+    arg [-headerpad_max_install_names] ==> ignore
+    arg [-v] ==> ignore
+    arg [CMakeFiles/cmTryCompileExec3334764444.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [-lSystem] ==> lib [System]
+    arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/7.3.0/lib/darwin/libclang_rt.osx.a] ==> lib [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/7.3.0/lib/darwin/libclang_rt.osx.a]
+  Library search paths: [;/usr/lib;/usr/local/lib]
+  Framework search paths: [;/Library/Frameworks/;/System/Library/Frameworks/]
+  remove lib [System]
+  collapse lib [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/7.3.0/lib/darwin/libclang_rt.osx.a] ==> [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/7.3.0/lib/darwin/libclang_rt.osx.a]
+  collapse library dir [/usr/lib] ==> [/usr/lib]
+  collapse library dir [/usr/local/lib] ==> [/usr/local/lib]
+  collapse framework dir [/Library/Frameworks/] ==> [/Library/Frameworks]
+  collapse framework dir [/System/Library/Frameworks/] ==> [/System/Library/Frameworks]
+  implicit libs: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/7.3.0/lib/darwin/libclang_rt.osx.a]
+  implicit dirs: [/usr/lib;/usr/local/lib]
+  implicit fwks: [/Library/Frameworks;/System/Library/Frameworks]
+
+
+
+
+Detecting C [-std=c11] compiler features compiled with the following output:
+Change Dir: /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec1508504197/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec1508504197.dir/build.make CMakeFiles/cmTryCompileExec1508504197.dir/build
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_progress_report /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1508504197.dir/feature_tests.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -fPIC    -std=c11 -o CMakeFiles/cmTryCompileExec1508504197.dir/feature_tests.c.o   -c /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/feature_tests.c
+Linking C executable cmTryCompileExec1508504197
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1508504197.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -fPIC  -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec1508504197.dir/feature_tests.c.o  -o cmTryCompileExec1508504197  
+
+
+    Feature record: C_FEATURE:1c_function_prototypes
+    Feature record: C_FEATURE:1c_restrict
+    Feature record: C_FEATURE:1c_static_assert
+    Feature record: C_FEATURE:1c_variadic_macros
+
+
+Detecting C [-std=c99] compiler features compiled with the following output:
+Change Dir: /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec1710810170/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec1710810170.dir/build.make CMakeFiles/cmTryCompileExec1710810170.dir/build
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_progress_report /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1710810170.dir/feature_tests.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -fPIC    -std=c99 -o CMakeFiles/cmTryCompileExec1710810170.dir/feature_tests.c.o   -c /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/feature_tests.c
+Linking C executable cmTryCompileExec1710810170
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1710810170.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -fPIC  -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec1710810170.dir/feature_tests.c.o  -o cmTryCompileExec1710810170  
+
+
+    Feature record: C_FEATURE:1c_function_prototypes
+    Feature record: C_FEATURE:1c_restrict
+    Feature record: C_FEATURE:0c_static_assert
+    Feature record: C_FEATURE:1c_variadic_macros
+
+
+Detecting C [-std=c90] compiler features compiled with the following output:
+Change Dir: /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec3432115104/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec3432115104.dir/build.make CMakeFiles/cmTryCompileExec3432115104.dir/build
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_progress_report /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec3432115104.dir/feature_tests.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -fPIC    -std=c90 -o CMakeFiles/cmTryCompileExec3432115104.dir/feature_tests.c.o   -c /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/feature_tests.c
+Linking C executable cmTryCompileExec3432115104
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3432115104.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -fPIC  -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec3432115104.dir/feature_tests.c.o  -o cmTryCompileExec3432115104  
+
+
+    Feature record: C_FEATURE:1c_function_prototypes
+    Feature record: C_FEATURE:0c_restrict
+    Feature record: C_FEATURE:0c_static_assert
+    Feature record: C_FEATURE:0c_variadic_macros
+Performing C SOURCE FILE Test HAVE_STRUCT_STAT_ST_MTIMESPEC succeded with the following output:
+Change Dir: /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec3915491343/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec3915491343.dir/build.make CMakeFiles/cmTryCompileExec3915491343.dir/build
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_progress_report /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec3915491343.dir/src.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -fPIC -DHAVE_STRUCT_STAT_ST_MTIMESPEC   -o CMakeFiles/cmTryCompileExec3915491343.dir/src.c.o   -c /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTryCompileExec3915491343
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3915491343.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -fPIC -DHAVE_STRUCT_STAT_ST_MTIMESPEC -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec3915491343.dir/src.c.o  -o cmTryCompileExec3915491343  
+
+Source file was:
+
+#include <sys/types.h>
+#include <sys/stat.h>
+
+int main()
+{
+   (void)((struct stat *)0)->st_mtimespec;
+   return 0;
+}
+
+Performing C SOURCE FILE Test HAVE_STRUCT_STAT_NSEC succeded with the following output:
+Change Dir: /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec2340169465/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec2340169465.dir/build.make CMakeFiles/cmTryCompileExec2340169465.dir/build
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_progress_report /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec2340169465.dir/src.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -fPIC -DHAVE_STRUCT_STAT_NSEC   -o CMakeFiles/cmTryCompileExec2340169465.dir/src.c.o   -c /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTryCompileExec2340169465
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2340169465.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -fPIC -DHAVE_STRUCT_STAT_NSEC -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec2340169465.dir/src.c.o  -o cmTryCompileExec2340169465  
+
+Source file was:
+
+#include <sys/stat.h>
+
+int main()
+{
+   (void)((struct stat *)0)->st_mtimespec.tv_nsec;
+   return 0;
+}
+
+Determining if the function SSLCreateContext exists in the /System/Library/Frameworks/Security.framework passed with the following output:
+Change Dir: /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec2782302738/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec2782302738.dir/build.make CMakeFiles/cmTryCompileExec2782302738.dir/build
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_progress_report /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec2782302738.dir/CheckFunctionExists.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -fPIC -DCHECK_FUNCTION_EXISTS=SSLCreateContext   -o CMakeFiles/cmTryCompileExec2782302738.dir/CheckFunctionExists.c.o   -c /usr/local/Cellar/cmake/3.2.2/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec2782302738
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2782302738.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -fPIC -DCHECK_FUNCTION_EXISTS=SSLCreateContext -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec2782302738.dir/CheckFunctionExists.c.o  -o cmTryCompileExec2782302738  -L/Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp/Security/SecureTransport.h  -framework Security -Wl,-rpath,/Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp/Security/SecureTransport.h 
+ld: warning: directory not found for option '-L/Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp/Security/SecureTransport.h'
+
+
+Performing C SOURCE FILE Test IS_WDOCUMENTATION_SUPPORTED succeded with the following output:
+Change Dir: /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec2067071855/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec2067071855.dir/build.make CMakeFiles/cmTryCompileExec2067071855.dir/build
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_progress_report /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec2067071855.dir/src.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -D_GNU_SOURCE -Wall -Wextra -fPIC -DIS_WDOCUMENTATION_SUPPORTED   -Wdocumentation -o CMakeFiles/cmTryCompileExec2067071855.dir/src.c.o   -c /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTryCompileExec2067071855
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2067071855.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -D_GNU_SOURCE -Wall -Wextra -fPIC -DIS_WDOCUMENTATION_SUPPORTED -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec2067071855.dir/src.c.o  -o cmTryCompileExec2067071855  
+
+Source file was:
+int main(void) { return 0; }
+Performing C SOURCE FILE Test IS_WNO-MISSING-FIELD-INITIALIZERS_SUPPORTED succeded with the following output:
+Change Dir: /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec3331167732/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec3331167732.dir/build.make CMakeFiles/cmTryCompileExec3331167732.dir/build
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_progress_report /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec3331167732.dir/src.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -D_GNU_SOURCE -Wall -Wextra -fPIC -Wdocumentation -DIS_WNO-MISSING-FIELD-INITIALIZERS_SUPPORTED   -Wno-missing-field-initializers -o CMakeFiles/cmTryCompileExec3331167732.dir/src.c.o   -c /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp/src.c
+In file included from <built-in>:329:
+<command line>:2:15: warning: ISO C99 requires whitespace after the macro name [-Wc99-extensions]
+#define IS_WNO-MISSING-FIELD-INITIALIZERS_SUPPORTED 1
+              ^
+1 warning generated.
+Linking C executable cmTryCompileExec3331167732
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3331167732.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -D_GNU_SOURCE -Wall -Wextra -fPIC -Wdocumentation -DIS_WNO-MISSING-FIELD-INITIALIZERS_SUPPORTED -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec3331167732.dir/src.c.o  -o cmTryCompileExec3331167732  
+
+Source file was:
+int main(void) { return 0; }
+Performing C SOURCE FILE Test IS_WSTRICT-ALIASING=2_SUPPORTED succeded with the following output:
+Change Dir: /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec1500552474/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec1500552474.dir/build.make CMakeFiles/cmTryCompileExec1500552474.dir/build
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_progress_report /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1500552474.dir/src.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -D_GNU_SOURCE -Wall -Wextra -fPIC -Wdocumentation -Wno-missing-field-initializers -DIS_WSTRICT-ALIASING=2_SUPPORTED   -Wstrict-aliasing=2 -o CMakeFiles/cmTryCompileExec1500552474.dir/src.c.o   -c /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp/src.c
+In file included from <built-in>:329:
+<command line>:2:19: warning: ISO C99 requires whitespace after the macro name [-Wc99-extensions]
+#define IS_WSTRICT-ALIASING 2_SUPPORTED
+                  ^
+1 warning generated.
+Linking C executable cmTryCompileExec1500552474
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1500552474.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -D_GNU_SOURCE -Wall -Wextra -fPIC -Wdocumentation -Wno-missing-field-initializers -DIS_WSTRICT-ALIASING=2_SUPPORTED -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec1500552474.dir/src.c.o  -o cmTryCompileExec1500552474  
+
+Source file was:
+int main(void) { return 0; }
+Performing C SOURCE FILE Test IS_WSTRICT-PROTOTYPES_SUPPORTED succeded with the following output:
+Change Dir: /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec3536978564/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec3536978564.dir/build.make CMakeFiles/cmTryCompileExec3536978564.dir/build
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_progress_report /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec3536978564.dir/src.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -D_GNU_SOURCE -Wall -Wextra -fPIC -Wdocumentation -Wno-missing-field-initializers -Wstrict-aliasing=2 -DIS_WSTRICT-PROTOTYPES_SUPPORTED   -Wstrict-prototypes -o CMakeFiles/cmTryCompileExec3536978564.dir/src.c.o   -c /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp/src.c
+In file included from <built-in>:329:
+<command line>:2:19: warning: ISO C99 requires whitespace after the macro name [-Wc99-extensions]
+#define IS_WSTRICT-PROTOTYPES_SUPPORTED 1
+                  ^
+1 warning generated.
+Linking C executable cmTryCompileExec3536978564
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3536978564.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -D_GNU_SOURCE -Wall -Wextra -fPIC -Wdocumentation -Wno-missing-field-initializers -Wstrict-aliasing=2 -DIS_WSTRICT-PROTOTYPES_SUPPORTED -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec3536978564.dir/src.c.o  -o cmTryCompileExec3536978564  
+
+Source file was:
+int main(void) { return 0; }
+Performing C SOURCE FILE Test IS_WDECLARATION-AFTER-STATEMENT_SUPPORTED succeded with the following output:
+Change Dir: /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec3278452178/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec3278452178.dir/build.make CMakeFiles/cmTryCompileExec3278452178.dir/build
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_progress_report /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec3278452178.dir/src.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -D_GNU_SOURCE -Wall -Wextra -fPIC -Wdocumentation -Wno-missing-field-initializers -Wstrict-aliasing=2 -Wstrict-prototypes -DIS_WDECLARATION-AFTER-STATEMENT_SUPPORTED   -Wdeclaration-after-statement -o CMakeFiles/cmTryCompileExec3278452178.dir/src.c.o   -c /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp/src.c
+In file included from <built-in>:329:
+<command line>:2:24: warning: ISO C99 requires whitespace after the macro name [-Wc99-extensions]
+#define IS_WDECLARATION-AFTER-STATEMENT_SUPPORTED 1
+                       ^
+1 warning generated.
+Linking C executable cmTryCompileExec3278452178
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3278452178.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -D_GNU_SOURCE -Wall -Wextra -fPIC -Wdocumentation -Wno-missing-field-initializers -Wstrict-aliasing=2 -Wstrict-prototypes -DIS_WDECLARATION-AFTER-STATEMENT_SUPPORTED -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec3278452178.dir/src.c.o  -o cmTryCompileExec3278452178  
+
+Source file was:
+int main(void) { return 0; }
+Performing C SOURCE FILE Test IS_WNO-UNUSED-CONST-VARIABLE_SUPPORTED succeded with the following output:
+Change Dir: /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec725441827/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec725441827.dir/build.make CMakeFiles/cmTryCompileExec725441827.dir/build
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_progress_report /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec725441827.dir/src.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -D_GNU_SOURCE -Wall -Wextra -fPIC -Wdocumentation -Wno-missing-field-initializers -Wstrict-aliasing=2 -Wstrict-prototypes -Wdeclaration-after-statement -DIS_WNO-UNUSED-CONST-VARIABLE_SUPPORTED   -Wno-unused-const-variable -o CMakeFiles/cmTryCompileExec725441827.dir/src.c.o   -c /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp/src.c
+In file included from <built-in>:329:
+<command line>:2:15: warning: ISO C99 requires whitespace after the macro name [-Wc99-extensions]
+#define IS_WNO-UNUSED-CONST-VARIABLE_SUPPORTED 1
+              ^
+1 warning generated.
+Linking C executable cmTryCompileExec725441827
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec725441827.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -D_GNU_SOURCE -Wall -Wextra -fPIC -Wdocumentation -Wno-missing-field-initializers -Wstrict-aliasing=2 -Wstrict-prototypes -Wdeclaration-after-statement -DIS_WNO-UNUSED-CONST-VARIABLE_SUPPORTED -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec725441827.dir/src.c.o  -o cmTryCompileExec725441827  
+
+Source file was:
+int main(void) { return 0; }
+Performing C SOURCE FILE Test IS_WNO-UNUSED-FUNCTION_SUPPORTED succeded with the following output:
+Change Dir: /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec617626466/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec617626466.dir/build.make CMakeFiles/cmTryCompileExec617626466.dir/build
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_progress_report /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec617626466.dir/src.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -D_GNU_SOURCE -Wall -Wextra -fPIC -Wdocumentation -Wno-missing-field-initializers -Wstrict-aliasing=2 -Wstrict-prototypes -Wdeclaration-after-statement -Wno-unused-const-variable -DIS_WNO-UNUSED-FUNCTION_SUPPORTED   -Wno-unused-function -o CMakeFiles/cmTryCompileExec617626466.dir/src.c.o   -c /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp/src.c
+In file included from <built-in>:329:
+<command line>:2:15: warning: ISO C99 requires whitespace after the macro name [-Wc99-extensions]
+#define IS_WNO-UNUSED-FUNCTION_SUPPORTED 1
+              ^
+1 warning generated.
+Linking C executable cmTryCompileExec617626466
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec617626466.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -D_GNU_SOURCE -Wall -Wextra -fPIC -Wdocumentation -Wno-missing-field-initializers -Wstrict-aliasing=2 -Wstrict-prototypes -Wdeclaration-after-statement -Wno-unused-const-variable -DIS_WNO-UNUSED-FUNCTION_SUPPORTED -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec617626466.dir/src.c.o  -o cmTryCompileExec617626466  
+
+Source file was:
+int main(void) { return 0; }
+Performing C SOURCE FILE Test IS_WNO-DEPRECATED-DECLARATIONS_SUPPORTED succeded with the following output:
+Change Dir: /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec2291173242/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec2291173242.dir/build.make CMakeFiles/cmTryCompileExec2291173242.dir/build
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_progress_report /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec2291173242.dir/src.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -D_GNU_SOURCE -Wall -Wextra -fPIC -Wdocumentation -Wno-missing-field-initializers -Wstrict-aliasing=2 -Wstrict-prototypes -Wdeclaration-after-statement -Wno-unused-const-variable -Wno-unused-function -DIS_WNO-DEPRECATED-DECLARATIONS_SUPPORTED   -Wno-deprecated-declarations -o CMakeFiles/cmTryCompileExec2291173242.dir/src.c.o   -c /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp/src.c
+In file included from <built-in>:329:
+<command line>:2:15: warning: ISO C99 requires whitespace after the macro name [-Wc99-extensions]
+#define IS_WNO-DEPRECATED-DECLARATIONS_SUPPORTED 1
+              ^
+1 warning generated.
+Linking C executable cmTryCompileExec2291173242
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2291173242.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -D_GNU_SOURCE -Wall -Wextra -fPIC -Wdocumentation -Wno-missing-field-initializers -Wstrict-aliasing=2 -Wstrict-prototypes -Wdeclaration-after-statement -Wno-unused-const-variable -Wno-unused-function -DIS_WNO-DEPRECATED-DECLARATIONS_SUPPORTED -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec2291173242.dir/src.c.o  -o cmTryCompileExec2291173242  
+
+Source file was:
+int main(void) { return 0; }
+Determining if the function qsort_r exists passed with the following output:
+Change Dir: /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec126007882/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec126007882.dir/build.make CMakeFiles/cmTryCompileExec126007882.dir/build
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_progress_report /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec126007882.dir/CheckFunctionExists.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -D_GNU_SOURCE -Wall -Wextra -fPIC -Wdocumentation -Wno-missing-field-initializers -Wstrict-aliasing=2 -Wstrict-prototypes -Wdeclaration-after-statement -Wno-unused-const-variable -Wno-unused-function -Wno-deprecated-declarations -DCHECK_FUNCTION_EXISTS=qsort_r   -o CMakeFiles/cmTryCompileExec126007882.dir/CheckFunctionExists.c.o   -c /usr/local/Cellar/cmake/3.2.2/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec126007882
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec126007882.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -D_GNU_SOURCE -Wall -Wextra -fPIC -Wdocumentation -Wno-missing-field-initializers -Wstrict-aliasing=2 -Wstrict-prototypes -Wdeclaration-after-statement -Wno-unused-const-variable -Wno-unused-function -Wno-deprecated-declarations -DCHECK_FUNCTION_EXISTS=qsort_r -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec126007882.dir/CheckFunctionExists.c.o  -o cmTryCompileExec126007882  
+
+
+Determining if files pthread.h exist passed with the following output:
+Change Dir: /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec1908438173/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec1908438173.dir/build.make CMakeFiles/cmTryCompileExec1908438173.dir/build
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_progress_report /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1908438173.dir/CheckIncludeFiles.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -D_GNU_SOURCE -Wall -Wextra -fPIC -Wdocumentation -Wno-missing-field-initializers -Wstrict-aliasing=2 -Wstrict-prototypes -Wdeclaration-after-statement -Wno-unused-const-variable -Wno-unused-function -Wno-deprecated-declarations    -o CMakeFiles/cmTryCompileExec1908438173.dir/CheckIncludeFiles.c.o   -c /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTryCompileExec1908438173
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1908438173.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -D_GNU_SOURCE -Wall -Wextra -fPIC -Wdocumentation -Wno-missing-field-initializers -Wstrict-aliasing=2 -Wstrict-prototypes -Wdeclaration-after-statement -Wno-unused-const-variable -Wno-unused-function -Wno-deprecated-declarations  -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec1908438173.dir/CheckIncludeFiles.c.o  -o cmTryCompileExec1908438173  
+
+
+Determining if the pthread_create exist passed with the following output:
+Change Dir: /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec3177808947/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec3177808947.dir/build.make CMakeFiles/cmTryCompileExec3177808947.dir/build
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_progress_report /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec3177808947.dir/CheckSymbolExists.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -D_GNU_SOURCE -Wall -Wextra -fPIC -Wdocumentation -Wno-missing-field-initializers -Wstrict-aliasing=2 -Wstrict-prototypes -Wdeclaration-after-statement -Wno-unused-const-variable -Wno-unused-function -Wno-deprecated-declarations    -o CMakeFiles/cmTryCompileExec3177808947.dir/CheckSymbolExists.c.o   -c /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTryCompileExec3177808947
+/usr/local/Cellar/cmake/3.2.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3177808947.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -D_GNU_SOURCE -Wall -Wextra -fPIC -Wdocumentation -Wno-missing-field-initializers -Wstrict-aliasing=2 -Wstrict-prototypes -Wdeclaration-after-statement -Wno-unused-const-variable -Wno-unused-function -Wno-deprecated-declarations  -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec3177808947.dir/CheckSymbolExists.c.o  -o cmTryCompileExec3177808947  
+
+File /Users/QLH/mdp/reposec/vendor/bundle/gems/rugged-0.24.0/vendor/libgit2/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
