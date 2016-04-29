@@ -89,7 +89,7 @@ class RepositoriesController < ApplicationController
   end
 
   def summary
-    @repos = ["1"]
+    @repos = params[:repos]
   end
 
   def import_report(report_name)

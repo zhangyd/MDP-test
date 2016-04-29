@@ -39,6 +39,11 @@ gem 'nokogiri'
 gem 'rugged'
 gem 'digest-murmurhash'
 
+gem 'rspec'
+gem 'rspec-rails'
+
+gem 'pry'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -6,7 +6,8 @@
         <%else %>
             <p><%= @repos.size %> repositories scanned</p>
         <%end%>
-
+<!-- checkboxes -->
+<!-- search by keyword? -->
                 <table class="table repository-table" style="background-color: white;overflow:auto;">
                     <thead>
                         <tr>
@@ -28,11 +29,11 @@
                                 <td>Vulnerabilties found! </td>
                             <% end %>
                             <td><%= link_to 'Show Dependencies', dependencies_path(Repository.find(repo.to_i).id) %></td>
+                            <td>Send Email?</td>
                         </tr>
                     </tbody>
                     <% end %>
                 </table>
- 
 
     </div>
 </body>
