@@ -1,4 +1,5 @@
 class Repository < ActiveRecord::Base
 	has_many :reports
-	belongs_to :user
+	has_many :users, through :organization
+	belongs_to :organization
 end

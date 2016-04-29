@@ -51,3 +51,9 @@ gem 'digest-murmurhash'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 gem 'devise'
+
+group :development, :test do
+	gem 'rspec'
+	gem 'rspec-rails'
+	gem 'pry'
+end
