@@ -84,14 +84,14 @@ class RepositoriesController < ApplicationController
     
     # Vulnerability.find_by_sql [final_query_array.join(" "), params[:repository_id]]
 
-    report_id = Report.where(repository_id: params[:repository_id]).order("created_at DESC").pluck(:id).first
-    final_params = [params[:repository_id], report_id]
+    @last_report = Report.where(repository_id: params[:repository_id]).order("created_at DESC").first
+    final_params = [params[:repository_id], @last_report.id]
 
     # severity: nil
     # date_order: nil
     optional_queries_and_params = []
 
-    if params[:severity].present?
+    if params[:severity].present? and ["High","Medium","Low"].include?(params[:severity])
       query = "AND severity = ?"
       optional_queries_and_params.push([query, params[:severity]])
     end
