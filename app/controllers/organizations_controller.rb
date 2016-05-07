@@ -10,6 +10,7 @@ class OrganizationsController < ApplicationController
   end
 
   def show
+    @repositories = Repository.where(:organization_id => params[:id])
   end
 
   def new

@@ -22,6 +22,7 @@ class RepositoriesController < ApplicationController
   def new
     # We don't associate this with the user yet!
     @repository = Repository.new
+    @repository.update_attribute(:organization_id, params[:organization_id])
   end
 
   # GET /repositories/1/edit

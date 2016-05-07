@@ -1,8 +1,48 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
 
-<h2><%= @organization.name %></h2>
+  <h2>Repositories In <%= @organization.name %></h2>
+  <br>
 
+  <div class="row">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Select</th>
+        <th>Project Name</th>
+        <th>Owner</th>
+        <th>Url</th>
+        <th colspan="4">Others</th>
+      </tr>
+    </thead>
 
+    <tbody>
 
-<%= link_to 'Edit', edit_organization_path(@organization) %> |
-<%= link_to 'Back', organizations_path %>
+      <%= form_tag scan_all_route_path, :method => :post do %>
+        <!-- This needs to be within the form  -->
+        <div><%= submit_tag "Scan Selected", 'data-disable-with' => "Please wait..", :class => 'btn btn-primary' %></div>
+
+        <% @repositories.each do |repository| %>
+          <tr>
+            <td><%= check_box_tag("repos[]", repository.id) %></td>
+            <td><%= repository.name %></td>
+            <td><%= repository.owner %></td>
+            <td><%= repository.url %></td>
+
+            <td><%= link_to 'Show Dependencies', dependencies_path(repository) %></td>
+            <td><%= link_to 'Details', repository %></td>
+            <td><%= link_to 'Edit', edit_repository_path(repository) %></td>
+            <td><%= link_to 'Destroy', repository, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+          </tr>
+        <% end %>
+
+      <% end %>
+  
+    </tbody>
+
+  </table>
+  <button type="button" class="btn btn-default"><%= link_to 'New Repository', new_repository_path(:organization_id => @organization.id) %></button>
+  </div>
+
+  <br>
+</div>
