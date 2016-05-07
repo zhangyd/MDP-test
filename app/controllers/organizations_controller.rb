@@ -1,16 +1,15 @@
 class OrganizationsController < ApplicationController
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   respond_to :html
 
   def index
-    @organizations = Organization.all
+    @organizations = current_user.organizations
     respond_with(@organizations)
   end
 
   def show
-    # require 'pry'; binding.pry
-    format.json { render :show, status: :ok, organization: @organization }
   end
 
   def new
@@ -23,6 +22,7 @@ class OrganizationsController < ApplicationController
 
   def create
     @organization = Organization.new(organization_params)
+    current_user.organizations << @organization
     @organization.save
     respond_with(@organization)
   end
@@ -40,9 +40,11 @@ class OrganizationsController < ApplicationController
   private
     def set_organization
       @organization = Organization.find(params[:id])
+      redirect_to root_path unless current_user.organizations.include?(@organization)
     end
 
+    # Never trust parameters from the scary internet, only allow the white list through.
     def organization_params
-      params[:organization]
+      params.require(:organization).permit(:name)
     end
 end

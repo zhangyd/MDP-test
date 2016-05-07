@@ -4,7 +4,7 @@
     <title>Groupon MDP</title>
     <%= stylesheet_link_tag 'application', media: 'all',
                                            'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+   <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
     <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
@@ -15,45 +15,45 @@
     
     <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/">Groupon MDP</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">Groupon MDP</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <% if user_signed_in? %>
           <ul class="nav navbar-nav">
-            <!-- <li><a href="#about">Dashboard</a></li> -->
             <li class="dropdown">
-              <a href="#preferences" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Preferences<span class="caret"></span></a>
+              <a href="#preferences" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Organizations<span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li role="separator" class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
+                <% @organizations.each do |organization| %>
+                  <li><%= link_to organization.name, organization_path(organization) %></li>
+                <% end %>
+                <li class="nav-divider"></li>
+                <li><%= link_to "Create Organization", new_organization_path %></li>
               </ul>
             </li>
           </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <% if user_signed_in? %>
-              Logged in as <strong><%= current_user.email %></strong>.
-              <li><%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %></li>
-              <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
-            <% else %>
-              <li><%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %></li>
-              <li><%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %></li>
-            <% end %>
-          </ul>
-        </div><!--/.nav-collapse -->
+        <% end %>
+        <ul class="nav navbar-nav navbar-right">
+          <% if user_signed_in? %>
+            Logged in as <strong><%= current_user.email %></strong>.
+            <li><%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %></li>
+            <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
+          <% else %>
+            <li><%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %></li>
+            <li><%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %></li>
+          <% end %>
+        </ul>
       </div>
-    </nav>
+    </div>
+  </nav>
+
 
 
     <div class="container">
