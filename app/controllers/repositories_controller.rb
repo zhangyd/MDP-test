@@ -6,6 +6,7 @@ require "digest/murmurhash"
 
 class RepositoriesController < ApplicationController
   before_action :set_repository, only: [:show, :edit, :update, :destroy, :scan]
+  before_action :authenticate_user!
 
   # GET /repositories
   # GET /repositories.json
@@ -22,7 +23,7 @@ class RepositoriesController < ApplicationController
   def new
     # We don't associate this with the user yet!
     @repository = Repository.new
-
+    @organization = Organization.find(params[:organization_id])
   end
 
   # GET /repositories/1/edit
