@@ -9,9 +9,9 @@ class RepositoriesController < ApplicationController
 
   # GET /repositories
   # GET /repositories.json
-  def index
-    @repositories = Repository.all
-  end
+  # def index
+  #   @repositories = Repository.all
+  # end
 
   # GET /repositories/1
   # GET /repositories/1.json
@@ -22,7 +22,7 @@ class RepositoriesController < ApplicationController
   def new
     # We don't associate this with the user yet!
     @repository = Repository.new
-    @repository.update_attribute(:organization_id, params[:organization_id])
+
   end
 
   # GET /repositories/1/edit
@@ -68,7 +68,7 @@ class RepositoriesController < ApplicationController
         @repo = Rugged::Repository.clone_at(url, repopath)
       end
 
-      # Insert into Report table 
+      # Insert into Report table
       t = Time.new
       report_path = userpath + '/report'
       report_name = "#{report_path}/#{t.strftime('%Y%m%d_%H%M%S')}.xml"
@@ -83,10 +83,10 @@ class RepositoriesController < ApplicationController
 
       # send email
       # DeveloperMailer.security_warning(Repository.find(repo.to_i).email).deliver
-      
+
       # Store generated report information in db
       import_report(report_name, repo.email)
-    end 
+    end
 
     redirect_to root_path
   end
@@ -119,7 +119,7 @@ class RepositoriesController < ApplicationController
       id = vulnerability.parent.parent
       id = id.first_element_child
       %w[
-    name cvssScore cvssAccessVector cvssAccessComplexity cvssAuthenticationr 
+    name cvssScore cvssAccessVector cvssAccessComplexity cvssAuthenticationr
     cvssConfidentialImpact cvssAvailabilityImpact severity description
       ].each_with_object({}) do |n, o|
         o[n] = vulnerability.at(n).text
@@ -146,7 +146,7 @@ class RepositoriesController < ApplicationController
             :cav => vuln["cvssAccessVector"],
             :cac => vuln["cvssAccessComplexity"],
             :ca => vuln["cvssAuthenticationr"],
-            :cci => vuln["cvssConfidentialImpact"], 
+            :cci => vuln["cvssConfidentialImpact"],
             :cai => vuln["cvssAvailabilityImpact"],
             :cii => vuln["cvssIntegrityImpact"],
             :severity => vuln["severity"],
@@ -179,18 +179,21 @@ class RepositoriesController < ApplicationController
       system "mkdir #{report_path}"
     end
 
-    # Insert new record 
+    # Insert new record
     @repository = Repository.new(repository_params.merge(:userpath => user_path, :repopath => repo_path))
+    @repository.update_attribute(:organization_id, params[:organization_id])
 
     respond_to do |format|
       if @repository.save
-        format.html { redirect_to @repository, notice: 'Repository was successfully created.' }
+        format.html { redirect_to organization_path(params[:organization_id]), notice: 'Repository was successfully created.' }
         format.json { render :show, status: :created, location: @repository }
       else
         format.html { render :new }
         format.json { render json: @repository.errors, status: :unprocessable_entity }
       end
     end
+
+
   end
 
   # PATCH/PUT /repositories/1
@@ -210,7 +213,7 @@ class RepositoriesController < ApplicationController
   # DELETE /repositories/1
   # DELETE /repositories/1.json
   def destroy
-    
+
     user_path = Repository.find(params[:id]).userpath
 
     cmd = "rm -r #{user_path}"
@@ -218,7 +221,8 @@ class RepositoriesController < ApplicationController
 
     @repository.destroy
     respond_to do |format|
-      format.html { redirect_to repositories_url, notice: 'Repository was successfully destroyed.' }
+      # format.html { redirect_to repositories_url, notice: 'Repository was successfully destroyed.' }
+      format.html { redirect_to organization_path(params[:organization_id]), notice: 'Repository was successfully destroyed.' }
       format.json { head :no_content }
     end
 

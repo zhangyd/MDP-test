@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @repository %> |
-<%= link_to 'Back', repositories_path %>
+<%= link_to 'Show', repository_path(@repository.id, :organization_id => params[:organization_id]) %> |
+<%= link_to 'Back', organization_path(params[:organization_id]) %>
