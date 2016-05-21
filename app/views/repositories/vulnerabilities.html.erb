@@ -1,0 +1,39 @@
+<body class="main-page-body">
+    <div class="head">
+    </div>
+    <div class="vulnerability-page">
+        <form method="GET">
+            <%= select_tag "severity", options_for_select(["Severity Level","High","Medium","Low"], selected_severity_level) %>
+            <input type="submit" value="Apply filter"></input>
+        </form>
+
+        <div class="container">
+            <h2><%= @vulnerabilities.count %> Vulnerabilities Found <span style="color:grey;padding: 20px;">on <%= @last_report.created_at.strftime("%l:%M %p %B %-d,  %Y") %></span></h2>
+            <div class="vulnerability-block" style="background-color: grey">
+                <table class="table vulnerability-table" style="background-color: white;overflow:auto;">
+                    <thead>
+                        <tr>
+                            <th>Identifier</th>
+                            <th>CVSS Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% @vulnerabilities.each do |vulnerability| %>
+                            <tr>
+                                <td><%= vulnerability.cve_name %></td>
+                                <td>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-<%= class_for_severity(vulnerability.severity) %>" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"
+                                        style="width:<%= vulnerability.cvss_score * 10 %>%">
+                                            <%= vulnerability.cvss_score %> (<%= vulnerability.severity %>)
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
