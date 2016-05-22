@@ -57,7 +57,7 @@ class RepositoriesController < ApplicationController
     # # "SELECT * FROM repositories WHERE id = 1
 
     # report = Report.find_by_repository_id(repository.id).order("created_at DESC")
-    # # "SELECT * FROM reports WHERE repository_id = 1 ORDER BY created_at DESC" 
+    # # "SELECT * FROM reports WHERE repository_id = 1 ORDER BY created_at DESC"
 
     # dependencies = report.dependencies
     # # "SELECT * FROM dependencies WHERE report_id = #{report.id}"
@@ -74,7 +74,7 @@ class RepositoriesController < ApplicationController
     # end
 
     # final_query_array = [
-    #   "SELECT * FROM vulnerabilities", 
+    #   "SELECT * FROM vulnerabilities",
     #   "INNER JOIN dependencies ON dependencies.id = vulnerabilities.dependency_id",
     #   "INNER JOIN reports ON reports.id = dependencies.report_id",
     #   "INNER JOIN repositories ON repositories.id = reports.repository_id",
@@ -83,7 +83,7 @@ class RepositoriesController < ApplicationController
 
     # Vulnerability.find_by_sql [final_query_array.join(" "), params[:repository_id], "another", "third"]
 
-    
+
     # Vulnerability.find_by_sql [final_query_array.join(" "), params[:repository_id]]
 
     @last_report = Report.where(repository_id: params[:repository_id]).order("created_at DESC").first
@@ -110,12 +110,12 @@ class RepositoriesController < ApplicationController
     # end
 
     final_query_array = [
-      "SELECT * FROM vulnerabilities", 
+      "SELECT * FROM vulnerabilities",
       "INNER JOIN dependencies ON dependencies.id = vulnerabilities.dependency_id",
       "INNER JOIN reports ON reports.id = dependencies.report_id",
       "INNER JOIN repositories ON repositories.id = reports.repository_id",
       "WHERE repositories.id = ?",
-      "AND reports.id  = ? ", 
+      "AND reports.id  = ? ",
     ]
 
     optional_queries_and_params.each do |query, param|
@@ -159,7 +159,7 @@ class RepositoriesController < ApplicationController
     # .join(" ")
 
     # Vulnerability.find_by_sql [query, params[:repository_id], ]
-    
+
 
   end
 
@@ -318,7 +318,7 @@ class RepositoriesController < ApplicationController
   def update
     respond_to do |format|
       if @repository.update(repository_params)
-        format.html { redirect_to @repository, notice: 'Repository was successfully updated.' }
+        format.html { redirect_to organization_path(params[:organization_id]), notice: 'Repository was successfully updated.' }
         format.json { render :show, status: :ok, location: @repository }
       else
         format.html { render :edit }
@@ -331,9 +331,16 @@ class RepositoriesController < ApplicationController
   # DELETE /repositories/1.json
   def destroy
 
-    user_path = Repository.find(params[:id]).userpath
+    reports = Report.where(:repository_id => params[:id])
+    for i in 0..(reports.count - 1)
+      report = reports[i].filename
+      cmd = "rm -r #{report}"
+      system cmd
+    end
 
-    cmd = "rm -r #{user_path}"
+    repo_path = Repository.find(params[:id]).repopath
+
+    cmd = "rm -r #{repo_path}"
     system cmd
 
     @repository.destroy

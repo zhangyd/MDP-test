@@ -12,7 +12,7 @@
     <script src="http://cdn.bootcss.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
   </head>
   <body>
-    
+
     <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -36,6 +36,8 @@
                 <% end %>
                 <li class="nav-divider"></li>
                 <li><%= link_to "Create Organization", new_organization_path %></li>
+                <li class="nav-divider"></li>
+                <li><%= link_to "Manage Organization", organizations_path %></li>
               </ul>
             </li>
           </ul>
