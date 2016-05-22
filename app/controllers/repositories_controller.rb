@@ -202,7 +202,7 @@ class RepositoriesController < ApplicationController
   def update
     respond_to do |format|
       if @repository.update(repository_params)
-        format.html { redirect_to @repository, notice: 'Repository was successfully updated.' }
+        format.html { redirect_to organization_path(params[:organization_id]), notice: 'Repository was successfully updated.' }
         format.json { render :show, status: :ok, location: @repository }
       else
         format.html { render :edit }
