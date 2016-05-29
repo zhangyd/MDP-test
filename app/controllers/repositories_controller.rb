@@ -195,7 +195,7 @@ class RepositoriesController < ApplicationController
 
       # Run Dependency Check
       system "mkdir #{report_path}" #HERE
-      cmd = "dependency-check --app #{repo_name} --format XML -o #{report_name} --scan #{repopath}"
+      cmd = "dependency-check --project #{repo_name} --format XML -o #{report_name} --scan #{repopath}"
       system cmd
 
       # send email
