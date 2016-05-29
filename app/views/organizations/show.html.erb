@@ -28,7 +28,7 @@
             <td><%= repository.owner %></td>
             <td><%= repository.url %></td>
 
-            <td><%= link_to 'Show Dependencies', dependencies_path(repository) %></td>
+            <td><%= link_to 'Show Dependencies', show_vulnerability_path(repository.id, :organization_id => @organization.id) %></td>
             <td><%= link_to 'Details', repository_path(repository.id, :organization_id => @organization.id) %></td>
             <td><%= link_to 'Edit', edit_repository_path(repository, :organization_id => @organization.id) %></td>
             <td><%= link_to 'Destroy', repository_path(repository.id, :organization_id => @organization.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>

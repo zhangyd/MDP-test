@@ -26,7 +26,7 @@ Rails.application.routes.draw do
 
   post 'repositories/scanselected' => 'repositories#scanselected', as: :scan_all_route
 
-  get "/repositories/:repository_id/vulnerabilities" => "repositories#vulnerabilities"
+  get "/repositories/:repository_id/vulnerabilities" => "repositories#vulnerabilities", as: :show_vulnerability
 
   # resources :repositories, :collection => { :scanselected => :put}
 

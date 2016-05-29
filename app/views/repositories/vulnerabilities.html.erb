@@ -2,6 +2,8 @@
     <div class="head">
     </div>
     <div class="vulnerability-page">
+        <%= link_to 'Back', organization_path(params[:organization_id]) %>
+
         <form method="GET">
             <%= select_tag "severity", options_for_select(["Severity Level","High","Medium","Low"], selected_severity_level) %>
             <input type="submit" value="Apply filter"></input>
