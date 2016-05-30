@@ -1,16 +1,15 @@
-<body class="main-page-body">
-    <div class="head">
-    </div>
-    <div class="vulnerability-page">
-        <%= link_to 'Back', organization_path(params[:organization_id]) %>
+<%= link_to 'Back', organization_path(params[:organization_id]) %>
+<div class="row">
+    <%= render 'repositories/sidebar' %>
 
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    
         <form method="GET">
             <%= select_tag "severity", options_for_select(["Severity Level","High","Medium","Low"], selected_severity_level) %>
             <input type="submit" value="Apply filter"></input>
         </form>
 
-        <div class="container">
-            <h2><%= @vulnerabilities.count %> Vulnerabilities Found <span style="color:grey;padding: 20px;">on <%= @last_report.created_at.strftime("%l:%M %p %B %-d,  %Y") %></span></h2>
+            <h2><%= @vulnerabilities.count %> Vulnerabilities Found for <%= @repository.name %><span style="color:grey;padding: 20px;">on <%= @last_report.created_at.strftime("%l:%M %p %B %-d,  %Y") %></span></h2>
             <div class="vulnerability-block" style="background-color: grey">
                 <table class="table vulnerability-table" style="background-color: white;overflow:auto;">
                     <thead>
@@ -36,6 +35,6 @@
                     </tbody>
                 </table>
             </div>
-        </div>
+
     </div>
-</body>
+</div>

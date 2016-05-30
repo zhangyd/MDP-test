@@ -48,49 +48,17 @@ class RepositoriesController < ApplicationController
 
   # **********************************************************************************
   def vulnerabilities
+    params[:organization_id]
     params[:repository_id]
     params[:severity]
     params[:date_order]
-    # ...
-
-    # repository = Repository.find(params[:repository_id])
-    # # "SELECT * FROM repositories WHERE id = 1
-
-    # report = Report.find_by_repository_id(repository.id).order("created_at DESC")
-    # # "SELECT * FROM reports WHERE repository_id = 1 ORDER BY created_at DESC"
-
-    # dependencies = report.dependencies
-    # # "SELECT * FROM dependencies WHERE report_id = #{report.id}"
-
-    # all_vulnerabilities = []
-    # dependencies.each do |dependency|
-
-    #   # dependency.vulnerabilities
-    #   # "SELECT * FROM vulnerabilities WHERE dependency_id = #{dependency.id}"
-
-    #   dependency.vulnerabilities.each do |vulnerability|
-    #     all_vulnerabilities << vulnerability
-    #   end
-    # end
-
-    # final_query_array = [
-    #   "SELECT * FROM vulnerabilities",
-    #   "INNER JOIN dependencies ON dependencies.id = vulnerabilities.dependency_id",
-    #   "INNER JOIN reports ON reports.id = dependencies.report_id",
-    #   "INNER JOIN repositories ON repositories.id = reports.repository_id",
-
-    # ]
-
-    # Vulnerability.find_by_sql [final_query_array.join(" "), params[:repository_id], "another", "third"]
-
-
-    # Vulnerability.find_by_sql [final_query_array.join(" "), params[:repository_id]]
+    @organization = Organization.find(params[:organization_id])
+    @repository = Repository.find(params[:repository_id])
+    @repos = Repository.where(organization_id: params[:organization_id])
 
     @last_report = Report.where(repository_id: params[:repository_id]).order("created_at DESC").first
     final_params = [params[:repository_id], @last_report.id]
 
-    # severity: nil
-    # date_order: nil
     optional_queries_and_params = []
 
     if params[:severity].present? and ["High","Medium","Low"].include?(params[:severity])
@@ -103,11 +71,6 @@ class RepositoriesController < ApplicationController
       query = "ORDER BY vulnerabilities.created_at ?"
       optional_queries_and_params.push([query, asc_or_desc])
     end
-
-    # if params[:another].present?
-    #   query = "AND another = ?"
-    #   optional_queries_and_params.push([query, params[:another]])
-    # end
 
     final_query_array = [
       "SELECT * FROM vulnerabilities",
@@ -123,43 +86,8 @@ class RepositoriesController < ApplicationController
       final_params.push(param)
     end
 
-    # query_params = [1, 2]
-    # Vulnerability.find_by_sql [final_query, *query_params]
-
-
     final_query = final_query_array.join(" ")
     @vulnerabilities = Vulnerability.find_by_sql [final_query, *final_params]
-
-    # Vulnerability.find_by_sql [final_query_array.join(" "), params[:repository_id], "another", "third"]
-
-
-
-    # # severity: nil
-    # # date_order: nil
-    # filter_criteria = []
-
-    # # severity: "high"
-    # # date_order: "latest_first"
-    # filter_criteria = [
-    #   ["WHERE severity = ?", params[:severity]],
-    #   ["ORDER BY created_at ?", params[:date_order]],
-    # ]
-
-    # # date_order: "latest_first"
-    # filter_criteria = [
-    #   ["ORDER BY created_at ?", params[:date_order]],
-    # ]
-
-    # # severity: "high"
-    # filter_criteria = [
-    #   ["WHERE severity = ?", params[:severity]],
-    # ]
-
-
-    # .join(" ")
-
-    # Vulnerability.find_by_sql [query, params[:repository_id], ]
-
 
   end
 
