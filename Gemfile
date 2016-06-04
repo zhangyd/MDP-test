@@ -45,7 +45,7 @@ gem 'spring',        group: :development
 
 
 gem 'nokogiri', '~> 1.4.0'
-gem 'rugged'
+gem 'rugged', '~> 0.21.4'
 gem 'digest-murmurhash'
 
 # Use ActiveModel has_secure_password
