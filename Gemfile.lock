@@ -172,7 +172,7 @@ DEPENDENCIES
   digest-murmurhash
   jbuilder (~> 2.0)
   jquery-rails
-  nokogiri
+  nokogiri (~> 1.6.0)
   pg
   pry
   rails (= 4.1.8)
