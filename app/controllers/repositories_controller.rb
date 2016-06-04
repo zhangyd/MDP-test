@@ -1,7 +1,7 @@
 # require "util"
 require "rubygems"
-require "nokogiri"
-require "Rugged"
+# require "nokogiri"
+# require "Rugged"
 require "digest/murmurhash"
 
 class RepositoriesController < ApplicationController
@@ -94,113 +94,113 @@ class RepositoriesController < ApplicationController
 
   #TODO: Fail if no repos are selected
   def scanselected
-    repos = params[:repos]
+    # repos = params[:repos]
 
-    repos.each do |repo|
-      repo = Repository.find(repo.to_i)
-      repo_name = repo.name
-      owner = repo.owner
-      url = repo.url
-      repo_id = repo.id
+    # repos.each do |repo|
+    #   repo = Repository.find(repo.to_i)
+    #   repo_name = repo.name
+    #   owner = repo.owner
+    #   url = repo.url
+    #   repo_id = repo.id
 
-      # user_name = Repository.find(params[:id]).owner
-      url = repo.url
-      userpath = repo.userpath
-      repopath = repo.repopath
+    #   # user_name = Repository.find(params[:id]).owner
+    #   url = repo.url
+    #   userpath = repo.userpath
+    #   repopath = repo.repopath
 
-      # Pull repository if not pulled yet
-      if !(File.directory?(repopath)) then
-        @repo = Rugged::Repository.clone_at(url, repopath)
-      end
+    #   # Pull repository if not pulled yet
+    #   if !(File.directory?(repopath)) then
+    #     @repo = Rugged::Repository.clone_at(url, repopath)
+    #   end
 
-      # Insert into Report table
-      t = Time.new
-      report_path = userpath + '/report'
-      report_name = "#{report_path}/#{t.strftime('%Y%m%d_%H%M%S')}.xml"
-      @report = repo.reports.create(:repository_id => repo_id, :filename => report_name)
-      # @report = Report.new(:repository_id => repo_id, :filename => report_name)
-      # @report.save
+    #   # Insert into Report table
+    #   t = Time.new
+    #   report_path = userpath + '/report'
+    #   report_name = "#{report_path}/#{t.strftime('%Y%m%d_%H%M%S')}.xml"
+    #   @report = repo.reports.create(:repository_id => repo_id, :filename => report_name)
+    #   # @report = Report.new(:repository_id => repo_id, :filename => report_name)
+    #   # @report.save
 
-      # Run Dependency Check
-      system "mkdir #{report_path}" #HERE
-      cmd = "dependency-check --project #{repo_name} --format XML -o #{report_name} --scan #{repopath}"
-      system cmd
+    #   # Run Dependency Check
+    #   system "mkdir #{report_path}" #HERE
+    #   cmd = "dependency-check --project #{repo_name} --format XML -o #{report_name} --scan #{repopath}"
+    #   system cmd
 
-      # send email
-      # DeveloperMailer.security_warning(Repository.find(repo.to_i).email).deliver
+    #   # send email
+    #   # DeveloperMailer.security_warning(Repository.find(repo.to_i).email).deliver
 
-      # Store generated report information in db
-      import_report(report_name, repo.email)
-    end
+    #   # Store generated report information in db
+    #   import_report(report_name, repo.email)
+    # end
 
-    redirect_to root_path
+    # redirect_to root_path
   end
 
   def import_report(report_name, email)
-    # first map all dependencies to correct report
-    thisReport = Report.find_by(:filename => report_name)
+    # # first map all dependencies to correct report
+    # thisReport = Report.find_by(:filename => report_name)
 
-    # add unique identifier to each dependency in report
-    count = 0
-    doc = Nokogiri::XML(open(report_name))
-    doc.css('dependency').each do |node|
-      depId = Nokogiri::XML::Node.new "dependency_id", doc
-      depId.content = count
-      node.first_element_child.before(depId)
-      count += 1
-    end
+    # # add unique identifier to each dependency in report
+    # count = 0
+    # doc = Nokogiri::XML(open(report_name))
+    # doc.css('dependency').each do |node|
+    #   depId = Nokogiri::XML::Node.new "dependency_id", doc
+    #   depId.content = count
+    #   node.first_element_child.before(depId)
+    #   count += 1
+    # end
 
-    # get list of dependencies
-    dependency = doc.search("dependency").map do |dependency|
-        %w[
-            dependency_id fileName filePath md5 sha1 description
-            ].each_with_object({}) do |n, o|
-            o[n] = dependency.at(n)
-        end
-    end
+    # # get list of dependencies
+    # dependency = doc.search("dependency").map do |dependency|
+    #     %w[
+    #         dependency_id fileName filePath md5 sha1 description
+    #         ].each_with_object({}) do |n, o|
+    #         o[n] = dependency.at(n)
+    #     end
+    # end
 
-    # get list of vulnerabilities
-    vulnerability = doc.search("vulnerability").map do |vulnerability|
-      id = vulnerability.parent.parent
-      id = id.first_element_child
-      %w[
-    name cvssScore cvssAccessVector cvssAccessComplexity cvssAuthenticationr
-    cvssConfidentialImpact cvssAvailabilityImpact severity description
-      ].each_with_object({}) do |n, o|
-        o[n] = vulnerability.at(n).text
-        o["dependency_id"] = id.text
-      end
-    end
+    # # get list of vulnerabilities
+    # vulnerability = doc.search("vulnerability").map do |vulnerability|
+    #   id = vulnerability.parent.parent
+    #   id = id.first_element_child
+    #   %w[
+    # name cvssScore cvssAccessVector cvssAccessComplexity cvssAuthenticationr
+    # cvssConfidentialImpact cvssAvailabilityImpact severity description
+    #   ].each_with_object({}) do |n, o|
+    #     o[n] = vulnerability.at(n).text
+    #     o["dependency_id"] = id.text
+    #   end
+    # end
 
-    # store dependencies and vulnerabilities
-    # a vulnerability belongs to a dependency when
-    # vulnerability["dependency_id"] == dependency["dependency_id"].text
-    dependency.each do |dep|
-      @dependency = thisReport.dependencies.create(
-        :file_name => dep["fileName"].text,
-        :file_path => dep["filePath"].text,
-        :md5 => dep["md5"].text,
-        :sha1 => dep["sha1"].text)
-        # :descriptions => dep["description"].text )
+    # # store dependencies and vulnerabilities
+    # # a vulnerability belongs to a dependency when
+    # # vulnerability["dependency_id"] == dependency["dependency_id"].text
+    # dependency.each do |dep|
+    #   @dependency = thisReport.dependencies.create(
+    #     :file_name => dep["fileName"].text,
+    #     :file_path => dep["filePath"].text,
+    #     :md5 => dep["md5"].text,
+    #     :sha1 => dep["sha1"].text)
+    #     # :descriptions => dep["description"].text )
 
-      vulnerability.each do |vuln|
-        if vuln["dependency_id"] == dep["dependency_id"].text
-          @vulnerability = @dependency.vulnerabilities.create(
-            :cve_name => vuln["name"],
-            :cvss_score => vuln["cvssScore"],
-            :cav => vuln["cvssAccessVector"],
-            :cac => vuln["cvssAccessComplexity"],
-            :ca => vuln["cvssAuthenticationr"],
-            :cci => vuln["cvssConfidentialImpact"],
-            :cai => vuln["cvssAvailabilityImpact"],
-            :cii => vuln["cvssIntegrityImpact"],
-            :severity => vuln["severity"],
-            :description => vuln["description"] )
-        end
+    #   vulnerability.each do |vuln|
+    #     if vuln["dependency_id"] == dep["dependency_id"].text
+    #       @vulnerability = @dependency.vulnerabilities.create(
+    #         :cve_name => vuln["name"],
+    #         :cvss_score => vuln["cvssScore"],
+    #         :cav => vuln["cvssAccessVector"],
+    #         :cac => vuln["cvssAccessComplexity"],
+    #         :ca => vuln["cvssAuthenticationr"],
+    #         :cci => vuln["cvssConfidentialImpact"],
+    #         :cai => vuln["cvssAvailabilityImpact"],
+    #         :cii => vuln["cvssIntegrityImpact"],
+    #         :severity => vuln["severity"],
+    #         :description => vuln["description"] )
+    #     end
 
-      end
+    #   end
 
-    end
+    # end
 
   end # end import_report
 
