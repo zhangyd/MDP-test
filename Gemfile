@@ -44,8 +44,8 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 
 
-gem 'nokogiri', '~> 1.4.0'
-gem 'rugged', '~> 0.21.4'
+# gem 'nokogiri', '~> 1.4.0'
+# gem 'rugged', '~> 0.21.4'
 gem 'digest-murmurhash'
 
 # Use ActiveModel has_secure_password
