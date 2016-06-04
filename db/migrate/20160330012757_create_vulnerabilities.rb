@@ -10,7 +10,7 @@ class CreateVulnerabilities < ActiveRecord::Migration
 	    t.string :cai
 	    t.string :cii
 	    t.string :severity
-	    t.string :dependency_id
+	    t.integer :dependency_id
 	    t.text :description
       t.timestamps
     end
