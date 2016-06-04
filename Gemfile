@@ -44,7 +44,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 
 
-gem 'nokogiri', '~> 1.6.0'
+gem 'nokogiri', '~> 1.4.0'
 gem 'rugged'
 gem 'digest-murmurhash'
 
