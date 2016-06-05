@@ -5,16 +5,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.1.8'
 
 # Use sqlite3 as the database for Active Record
-# gem 'sqlite3'
-group :development, :test do
 gem 'sqlite3'
-end
-
-group :production do
-gem 'pg'
-gem 'rails_12factor'
-end
-
 
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 
@@ -44,8 +35,8 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 
 
-# gem 'nokogiri', '~> 1.4.0'
-# gem 'rugged', '~> 0.21.4'
+gem 'nokogiri'
+gem 'rugged'
 gem 'digest-murmurhash'
 
 # Use ActiveModel has_secure_password

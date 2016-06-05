@@ -1,5 +1,6 @@
-class CreateVulnerabilities < ActiveRecord::Migration
+class RewriteVulnerabilities < ActiveRecord::Migration
   def change
+  	drop_table :vulnerabilities
     create_table :vulnerabilities do |t|
 	    t.string :cve_name
 	    t.decimal :cvss_score
