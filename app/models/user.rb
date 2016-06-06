@@ -3,6 +3,10 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
+  validates :email, presence: true, length: { maximum: 255 },
+                    format: { with: VALID_EMAIL_REGEX },
+                    uniqueness: { case_sensitive: false }
   has_and_belongs_to_many :organizations, :join_table => :users_organizations
   has_many :repositories, through: :organizations
 
@@ -10,7 +14,7 @@ class User < ActiveRecord::Base
 
   def setup_organization
 		organization = Organization.new
-		organization.name = "Unnamed"
+		organization.name = "Default Organization"
 		organization.save
 		self.organizations << organization
   end

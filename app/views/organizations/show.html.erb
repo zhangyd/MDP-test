@@ -1,26 +1,16 @@
-<div class="container">
-
-  <h2>Repositories In <%= @organization.name %></h2>
-  <br>
-
-  <div class="row">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Select</th>
-        <th>Project Name</th>
-        <th>Owner</th>
-        <th>Url</th>
-        <th colspan="4">Others</th>
-      </tr>
-    </thead>
-
-    <tbody>
-
-      <%= form_tag scan_all_route_path, :method => :post do %>
-        <!-- This needs to be within the form  -->
-        <div><%= submit_tag "Scan Selected", 'data-disable-with' => "Please wait..", :class => 'btn btn-primary' %></div>
-
+<h2>Repositories in <%= @organization.name %></h2>
+  <div class="row"> 
+    <%= form_tag scan_all_route_path, :method => :post do %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Select</th>
+          <th>Name</th>
+          <th>Owner</th>
+          <th>Url</th>
+        </tr>
+      </thead>
+      <tbody>
         <% @repositories.each do |repository| %>
           <tr>
             <td><%= check_box_tag("repos[]", repository.id) %></td>
@@ -32,17 +22,12 @@
             <td><%= link_to 'Details', repository_path(repository.id, :organization_id => @organization.id) %></td>
             <td><%= link_to 'Edit', edit_repository_path(repository, :organization_id => @organization.id) %></td>
             <td><%= link_to 'Destroy', repository_path(repository.id, :organization_id => @organization.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-
           </tr>
         <% end %>
-
-      <% end %>
-
-    </tbody>
-
-  </table>
-  <button type="button" class="btn btn-default"><%= link_to 'New Repository', new_repository_path(:organization_id => @organization.id) %></button>
+      </tbody>
+    </table>
   </div>
-
-  <br>
-</div>
+  <div class="row"> 
+    <p style="width:50%;"><%= submit_tag "Scan Selected", 'data-disable-with' => "Please wait..", :class => 'btn btn-primary' %></p>
+  <% end %>
+  </div>

@@ -1,5 +1,6 @@
 class OrganizationsController < ApplicationController
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
+  protect_from_forgery prepend: true
   before_action :authenticate_user!
 
   respond_to :html
@@ -25,12 +26,12 @@ class OrganizationsController < ApplicationController
     @organization = Organization.new(organization_params)
     current_user.organizations << @organization
     @organization.save
-    respond_with(@organization)
+    redirect_to organizations_path
   end
 
   def update
     @organization.update(organization_params)
-    respond_with(@organization)
+    redirect_to organizations_path
   end
 
   def destroy

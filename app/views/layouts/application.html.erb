@@ -1,65 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Groupon MDP</title>
+    <title><%= full_title(yield(:title)) %></title>
     <%= stylesheet_link_tag 'application', media: 'all',
                                            'data-turbolinks-track' => true %>
-   <%= javascript_include_tag 'application' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
-    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-    <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
-    <script src="http://cdn.bootcss.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <!-- renders IE-specific code -->
+    <%= render 'layouts/shim' %>
   </head>
   <body>
-
-    <!-- Fixed navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <%= render 'layouts/header' %>
     <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="/">Groupon MDP</a>
-      </div>
-      <div id="navbar" class="navbar-collapse collapse">
-        <% if user_signed_in? %>
-          <ul class="nav navbar-nav">
-            <li class="dropdown">
-              <a href="#preferences" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Organizations<span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <% @organizations.each do |organization| %>
-                  <li><%= link_to organization.name, organization_path(organization) %></li>
-                <% end %>
-                <li class="nav-divider"></li>
-                <li><%= link_to "Create Organization", new_organization_path %></li>
-                <li class="nav-divider"></li>
-                <li><%= link_to "Manage Organization", organizations_path %></li>
-              </ul>
-            </li>
-          </ul>
-        <% end %>
-        <ul class="nav navbar-nav navbar-right">
-          <% if user_signed_in? %>
-            <li class="navbar-text">Logged in as <strong><%= current_user.email %></strong></li>
-            <li><%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %></li>
-            <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
-          <% else %>
-            <li><%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %></li>
-            <li><%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %></li>
-          <% end %>
-        </ul>
-      </div>
-    </div>
-  </nav>
+      <!-- displays reason for error on page -->
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
 
-
-
-    <div class="container">
       <%= yield %>
+      <%= render 'layouts/footer' %>
+      <!-- show debug informaiton when in dev -->
+      <%= debug(params) if Rails.env.development? %>
     </div>
   </body>
 </html>

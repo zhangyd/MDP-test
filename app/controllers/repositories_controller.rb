@@ -8,20 +8,12 @@ class RepositoriesController < ApplicationController
   before_action :set_repository, only: [:show, :edit, :update, :destroy, :scan]
   before_action :authenticate_user!
 
-  # GET /repositories
-  # GET /repositories.json
-  # def index
-  #   @repositories = Repository.all
-  # end
-
   # GET /repositories/1
-  # GET /repositories/1.json
   def show
   end
 
   # GET /repositories/new
   def new
-    # We don't associate this with the user yet!
     @repository = Repository.new
     @organization = Organization.find(params[:organization_id])
   end
@@ -91,8 +83,6 @@ class RepositoriesController < ApplicationController
 
   end
 
-
-  #TODO: Fail if no repos are selected
   def scanselected
     repos = params[:repos]
 
@@ -237,8 +227,6 @@ class RepositoriesController < ApplicationController
         format.json { render json: @repository.errors, status: :unprocessable_entity }
       end
     end
-
-
   end
 
   # PATCH/PUT /repositories/1
@@ -258,7 +246,6 @@ class RepositoriesController < ApplicationController
   # DELETE /repositories/1
   # DELETE /repositories/1.json
   def destroy
-
     reports = Report.where(:repository_id => params[:id])
     for i in 0..(reports.count - 1)
       report = reports[i].filename
