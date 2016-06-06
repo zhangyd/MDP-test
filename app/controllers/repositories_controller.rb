@@ -194,6 +194,49 @@ class RepositoriesController < ApplicationController
 
   end # end import_report
 
+  def create_issues
+    # token = "89727cfa696746c22a2c85cef6888717f2af0b33"
+    repos = params[:repos]
+
+    repos.each do |repo|
+      repo = Repository.find(repo.to_i)
+      # assuming this format "https://github.com/psiinon/bodgeit"
+      url = repo.url
+      @repo_id = repo.id
+      # parse url
+      name = url.split('/')[3]
+      projname = url.split('/')[4]
+      url = URI.parse("https://api.github.com/repos/" + name + "/" + projname + "/issues")
+
+      req = Net::HTTP::Post.new(url.path)
+      req.add_field("Authorization", "token #{current_user.token}")
+
+      http = Net::HTTP.new(url.host, url.port)
+      http.use_ssl = true
+
+      req.body = '{
+      "title": "Vulnerable Dependencies Found", 
+      "body": "We should have one", 
+      "labels": ["security"]
+      }'
+      res = http.request(req)
+
+      #add found by?
+
+      # TODO:
+      # - form tag
+      # - body
+      dep_issues = []
+      dependencies = Dependency.where(:report_id => @repo_id)
+      dependencies.each do |dep|
+        vulnerabilities = Vulnerability.where(:dependency_id => dep.id)
+        if !vulnerabilities.empty?
+          dep_issues.push(dep.file_name)
+        end
+      end
+
+  end
+
   # **********************************************************************************
 
   # POST /repositories
